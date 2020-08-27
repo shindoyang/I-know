@@ -17,3 +17,28 @@ list中可以存储null值
 ```
 
 也就是说，你的List中本来元素是null,但是输出的时候被转化成了"null"这样的一个字符串。
+
+
+
+### java 8
+
+#### lambda表达式
+
+#### stream Api
+
+#### 自定义注解
+
+##### 元注解
+
+@Target 作用的对象范围，必填字段
+
+@Retention 作用的时机，必填字段
+
+@Documented 是否在jdk文档中显示
+
+@Inherited 表示该注解是否可以被继承
+
+
+
+
+
