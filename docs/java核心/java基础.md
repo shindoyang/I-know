@@ -38,6 +38,24 @@ list中可以存储null值
 
 @Inherited 表示该注解是否可以被继承
 
+#### 动态代理
+
+proxy
+
+proxy.newProxyInstance()
+
+InvocationHandler
+
+
+
+
+
+
+
+
+
+
+
 
 
 
