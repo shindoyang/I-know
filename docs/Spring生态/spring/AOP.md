@@ -3,4 +3,11 @@
 1. 导包
 2. 打开扫描机制
 3. 加入@Aspect注解
-4. 
+4. 底层动态代理：
+   * jdk 自带的，通过Proxy.newInstance  和InvocationHandler，需要有接口
+   * cglib，有没有接口都可以
+   * jdk自带的动态代理和cglib动态代理，没有性能优劣之分，spring判断如果基于接口实现，使用jdk动态代理，如果没有接口，则使用cglib做动态代理。（早期cglib的性能会比jdk动态代理略为突出，不过随着jdk的不断迭代更新，两者性能相仿）
+5. aop的使用场景：
+   * 日志
+   * 事务
+   * 
