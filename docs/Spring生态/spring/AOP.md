@@ -13,7 +13,8 @@
 6. 声明式事务
    1. mysql的对应maven版本说明：8对应的是8的版本，6对应的是5.7以上的版本，5.7以下的版本用5.1
    2. 包依赖：druid、mysql、spring-jdbc、spring-orm（object relation mapping 对应关系映射）、spring-transations（spring-tx）
-   3. jdbcTemplate     看源码的时候有注释，使用maven的download sources 把源码包下载回来，那底层源码就会有注释
+   3. jdbcTemplate     看源码的时候有注释，使用maven的download sources 把源码包下载回来，那底层源码就会有注释，实际一般不用，后面会学spring 和 mybatis 结合
+   4. 
 
 7. 士大夫
 
