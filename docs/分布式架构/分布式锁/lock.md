@@ -12,5 +12,23 @@ mysql锁--性能不好，比redis差10万倍
 
 ![image-20200831210129509](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20200831210129509.png)
 
+方案二：
+
+单个redisson
+
+redis 锁续期 3分之一时间，业务未执行完，自动续期。
+
+
+
+哨兵模式
+
+
+
+
+
+红锁--多个redis
+
+
+
 
 
