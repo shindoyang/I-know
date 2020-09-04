@@ -60,6 +60,26 @@ This is a dollar sign: $
 
 > ngx_geo的最常规用法是根据客户端ip地址对指定的Nginx变量进行赋值。
 
+在"变量插值"的上下文中，还有一种特殊情况，当变量名之后紧跟变量名的构成字符串时（比如后跟字母、数字以及下划线），就需要使用特别的记法来消除歧义。例如：
+
+```nginx
+server{
+    listen 8080;
+    
+    location /test{
+        set $first "hello ";
+        echo "${first}world";
+    }
+}
+```
+
+上述例子中，echo配置指令的参数值中引用变量$first的时候，后面紧跟world这个单词，如果直接写作"$firstworld"，则Nginx"变量插值"引擎会将之识别为应用了变量$firstworld。为了避免这个问题，Nginx的字符串记法支持使用花括号在$之后把变量名围起来，比如例子中${first}。上面例子的输出结果是：
+
+```c
+$ curl 'http://localhost:8080/test'
+hello world
+```
+
 
 
 
