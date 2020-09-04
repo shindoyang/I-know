@@ -56,7 +56,9 @@ $ curl 'http://localhost:8080/test'
 This is a dollar sign: $
 ```
 
+上面的例子使用了标准模块ngx_geo 提供的配置指令geo来为变量$dollar赋予字符串$，这样，后面需要用到美元符的地方，直接使用$dollar变量即可。
 
+> ngx_geo的最常规用法是根据客户端ip地址对指定的Nginx变量进行赋值。
 
 
 
