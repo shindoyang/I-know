@@ -34,6 +34,30 @@ $  curl 'http://localhost:8080/test'
 foo: hello
 ```
 
+不过所有插件的配置指定都支持"变量插值"，第三方ngx_echo模块不支持直接输出含有$的字符串，也不支持转义，但是可以通过不支持”变量插值“的模块配置指令构造出取值为$的Nginx变量，然后在echo中使用这个变量。比如：
+
+```nginx
+geo $dollar{
+	default "$";
+}
+
+server {
+	listen 8080;
+    location /test{
+        echo "This is a dollar sign: $dollar"; 
+    }
+}
+```
+
+测试结果如下：
+
+```c
+$ curl 'http://localhost:8080/test'
+This is a dollar sign: $
+```
+
+
+
 
 
 
