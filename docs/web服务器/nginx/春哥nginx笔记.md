@@ -29,7 +29,7 @@ server{
 
 使用curl这个http客户端在命令行上请求这个/test接口，可以得到：
 
-```c
+```shell
 $  curl 'http://localhost:8080/test'
 foo: hello
 ```
@@ -51,7 +51,7 @@ server {
 
 测试结果如下：
 
-```c
+```shell
 $ curl 'http://localhost:8080/test'
 This is a dollar sign: $
 ```
@@ -75,12 +75,63 @@ server{
 
 上述例子中，echo配置指令的参数值中引用变量$first的时候，后面紧跟world这个单词，如果直接写作"$firstworld"，则Nginx"变量插值"引擎会将之识别为应用了变量$firstworld。为了避免这个问题，Nginx的字符串记法支持使用花括号在$之后把变量名围起来，比如例子中${first}。上面例子的输出结果是：
 
-```c
+```shell
 $ curl 'http://localhost:8080/test'
 hello world
 ```
 
+*set* 指令（以及前面提到的*geo*指令）不仅有赋值的功能，他还有创建变量的副作用。即当作为赋值对象的变量尚不存在时，它会自动创建该变量。如果我们不创建就直接使用它的值，则会报错。例如：
 
+```nginx
+server{
+    listen 8080;
+    location /bad{
+        echo $foo;
+    }
+}
+```
+
+此时Nginx服务器会拒绝加载配置：
+
+```shell
+[emerg] unkown "foo" variable
+```
+
+是的，我们甚至无法启动服务！
+
+究其原因：Nginx变量的创建和赋值操作发生在全然不同的时间阶段。Nginx变量的创建只能发生在Nginx配置加载的时候，或者说Nginx启动的时候；而赋值操作则只会发生请求实际处理的时候。这意味着不创建而直接使用变量会导致启动失败，同时也意味着我们无法在请求处理时动态的创建新的Nginx变量。
+
+Nginx变量一旦创建，其变量名的可见范围就是整个Nginx配置，甚至可以跨越不同虚拟主机的server配置块。看下面的例子：
+
+```nginx
+server{
+    listen 8080;
+    
+    location /foo{
+        echo "foo = [$foo]";
+    }
+    
+    location /bar{
+        set $foo 32;
+        echo "foo = [$foo]";
+    }
+}
+```
+
+这里我们在location /bar 中用/set指令创建了$foo，于是在整个配置文件中这个变量是可见的，因为我们在location /foo中直接引用这个变量而不用担心Nginx会报错。
+
+但是，观察下面使用curl工具访问这两个接口的结果：
+
+```shell
+$ curl 'http://localhost:8080/foo'
+foo = []
+
+$ curl 'http://localhost:8080/bar'
+foo = 32
+
+$ curl 'http://localhost:8080/foo'
+foo = []
+```
 
 
 
