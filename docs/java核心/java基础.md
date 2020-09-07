@@ -1,3 +1,5 @@
+实例化是从无到有，初始化是从无名小卒到有名有姓
+
 ## String 和StringBuffer StringBuilder
 
 
