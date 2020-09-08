@@ -37,7 +37,7 @@ location /test{
 }
 ```
 
-这里我们先把内建变量$arg_a的值，即原始请求的URL参数a的值，保存在用户变量$orig_a中，然后通过对内建变量$args进行赋值，把当前请求的参数串改写成a=5，最后再用echo指令分别输出$orgi_a和$arg_a变量的值。因为对内建变量$args的修改会直接导致当前请求的URL参数串发生变化，因为内建变量$arg_XXX自然会随之变化。测试的结果证实了这一点：
+这里我们先把内建变量$arg_a的值，即原始请求的URL参数a的值，保存在用户变量$orig_a中，然后通过对内建变量**$args**进行赋值，把当前请求的参数串改写成a=5，最后再用**echo**指令分别输出$orgi_a和$arg_a变量的值。因为对内建变量**$args**的修改会直接导致当前请求的URL参数串发生变化，因为内建变量**$arg_XXX**自然会随之变化。测试的结果证实了这一点：
 
 ```shell
 curl 'http://localhost:8080/test?a=3'
@@ -45,4 +45,39 @@ original a:3
 a: 5
 ```
 
-我们看到，因为原始请求的URL参数串是a=3，所以$arg_a最初的值是3，但随后通过改写args变量，将URL参数串又强行修改为a=5，所以最终$arg_a的值又自动变为了5。
+我们看到，因为原始请求的URL参数串是a=3，所以$arg_a最初的值是3，但随后通过改写**$args**变量，将URL参数串又强行修改为a=5，所以最终$arg_a的值又自动变为了5。
+
+我们再来看一个通过修改$args变量影响标准的HTTP代理模块**ngx_proxy**的例子：
+
+```nginx
+server{
+    listen 8080;
+    
+    location /test{
+        set $args "foo=1&bar=2";
+        proxy_pass http://127.0.0.1:8081/args;
+    }
+}
+
+server{
+    listen 8081;
+    
+    location /args{
+        echo "args: $args";
+    }
+}
+```
+
+这里我们在http配置块中定义了两个虚拟主机。第一个虚拟主机监听8080端口，其/test接口自己通过改写$args变量，将当前请求的URL参数串无条件的修改为foo=1&bar=2.然后/test接口再通过**ngx_proxy**模块的**proxy_pass**指令配置了一个反向代理，指向本机的8081端口上的HTTP服务/args.默认情况下，**ngx_proxy**模块在转发HTTP请求到远方HTTP服务的时候，会自动把当前请求的URL参数串也转发到远方。
+
+而本机的8081端口上的HTTP服务正是由我们定义的第二个虚机主机来提供的。我们在第二个虚拟主机的location /args中利用echo 指令输出当前请求的URL参数串，以检查/test接口通过**ngx_proxy**模块实际转发过来的URL请求参数串。
+
+我们来实际访问一下第一个虚拟主机的/test接口：
+
+```shell
+$ curl 'http://localhost:8080/test?blah=7'
+args: foo=1&bar=2
+```
+
+我们看到，虽然请求自己提供了URL参数串blah=7，但在location /test中，参数串被强行改写成了foo=1&bar=2，接着经由**proxy_pass**指令将我们被改写掉的参数串转发给了第二个虚拟主机上配置的/args接口，然后在把/args接口的URL参数串输出。事实证明，我们对**$args**变量的赋值操作，也成功影响到了**ngx_proxy**模块的行为。
+
