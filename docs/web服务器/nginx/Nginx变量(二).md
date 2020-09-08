@@ -134,6 +134,31 @@ class： 9
 
 空格果然被解码出来了！
 
+从这个例子我们同时可以看到，这个**set_unescape_uri**指令也像**set**指令那样，拥有自动创建Nginx变量的功能。后面我们还会专门介绍到**ngx_set_misc**模块。
+
+像**$arg_XXX**这种类型的变量拥有无穷无尽可能的名字，所以它们并不对应任何存放值的容器。而且这种变量在Nginx核心中是经过特别处理的，第三方Nginx模块是不能提供这样充满魔法的内建变量的。
+
+类似**$arg_XXX**的内建变量还有不少，比如用来取cookie值的**$cookie_XXX**变量群，用来取请求头的**$http_XXX**变量群，以及用来取响应头的**$sent_http_XXX**变量群。这里就不一一介绍了，感兴趣的读者可以参考ngx_http_core模块的官方文档：http://nginx.org/en/docs/http/ngx_http_core_module.html
+
+需要指出的是，许多内建变量都是只读的，比如我们刚才介绍的**$uri**和**$request_uri**，对只读变量进行赋值是应当绝对避免的，因为会有意想不到的后果，比如：
+
+```nginx
+? location /bad{
+? 		set $uri /blah;
+?       echo $uri;
+? }
+```
+
+这个有问题的配置会让Nginx在启动的时候报出一条令人匪夷所思的错误：
+
+```shell
+[emerg] the duplicate "uri" variable in ...
+```
+
+如果你尝试改写另外一些只读的内建变量，比如**$arg_XXX**变量，在某些Nginx版本中设置可能导致进程崩溃。
+
+
+
 
 
 
