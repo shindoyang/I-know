@@ -46,5 +46,101 @@ server{
 
 从上面这个例子我们看到，Nginx变量值容器的生命期是与当前正在处理的请求绑定的，而与location无关。
 
+前面我们接触到的都是通过**set**指令隐式创建的Nginx变量。这些变量我们一般称为“用户自定义变量”，或者更简单一些，“用户变量”。既然有“用户自定义变量”，自然也就有由Nginx核心和各个Nginx模块提供的“预定义变量”，或者说“内建变量”（builtin variables）。
+
+Nginx内建变量最常见的用途就是获取关于请求或相应的各种信息。例如由**ngx_http_core**模块提供的内建变量**$uri**，可以用来获取当前请求的URI（经过解码，并且不含请求参数），而**$request_uri**则用来获取请求最原始的URI（未经解码，并且包含请求参数）。请看下面这个例子：
+
+```nginx
+location /test{
+    echo "uri = $uri";
+    echo "request_uri = $request_uri";
+}
+```
+
+这里为了简单起见，连server配置快也省略了，和前面所有示例一样，我们监听的依然是8080端口。在这个例子里，我们把$uri和$request_uri的值输出到响应体中去。下面我们用不同的请求来测试一下这个/test接口：
+
+```shell
+$ curl 'http://localhost:8080/test'
+uri = /test
+request_uri = /test
+
+$ curl 'http://localhost:8080/test?a=3&b=4'
+uri = /test
+request_uri = /test?a=3&b=4
+
+$ curl 'http://localhost:8080/test/hello%20world?a=3&b=4'
+uri = /test/hello world
+request_uri = /test/hello%20world?a=3&b=4
+```
+
+另一个特别常用的内建变量其实并不是一个单独一个变量，而是有无限多变种的一群变量，即名字以**arg_**开头的所有变量，我们姑且称之为**$arg_XXX**变量群。一个例子是**$arg_name**，这个变量的值是当前请求名为name的URI参数的值，而且还是未解码的原始形式的值。我们来看一个比较完整的示例：
+
+```nginx
+location /test{
+    echo "name: $arg_name";
+    echo "class: $arg_class";
+}
+```
+
+然后在命令行上使用各种参数组合去请求这个/test接口：
+
+```shell
+$ curl 'http://localhost:8080/test'
+name:
+class:
+
+$ curl 'http://localhost:8080/test?name=Tom&class=3'
+name: Tom
+class: 3
+
+$ curl 'http://localhost:8080/test?name=hello%20world&class=9'
+name: hello20%world
+class: 9
+```
+
+其实**$arg_name**不仅可以匹配name参数，也可以匹配NAME参数，抑或是Name，等等：
+
+```shell
+$ curl 'http://localhost:8080/test?NAME=Marry'
+name: Marry
+class: 
+
+$ curl 'http://localhost:8080/test?Name=Jimmy'
+name: Jimmy
+class:
+```
+
+Nginx会在匹配参数名之前，自动把原始请求中的参数名调整为全部小写的形式。
+
+如果你想对URI参数值中的%XX这样的编码序列进行解码，可以使用第三方**ngx_set_misc**模块提供的**set_unescape_uri**配置指令：
+
+```nginx
+location /test{
+    set_unescape_uri $name $arg_name;
+    set_unescape_uri $class $arg_class;
+    
+    echo "name: $name";
+    echo "class: $class";
+}
+```
+
+现在我们再看一下效果：
+
+```shell
+$ curl 'http://localhost:8080/test?name=hello%20world&class=9'
+name: hello world
+class： 9
+```
+
+空格果然被解码出来了！
+
+
+
+
+
+
+
+
+
 
 
