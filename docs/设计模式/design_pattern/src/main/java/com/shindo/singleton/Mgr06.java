@@ -15,7 +15,7 @@ package com.shindo.singleton;
  * 成熟方案二
  */
 public class Mgr06 {
-	private static Mgr06 INSTANCE;
+	private static volatile Mgr06 INSTANCE;
 
 	private Mgr06() {
 	}
