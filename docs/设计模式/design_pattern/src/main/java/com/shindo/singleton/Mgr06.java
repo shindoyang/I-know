@@ -21,8 +21,8 @@ public class Mgr06 {
 	}
 
 	public static Mgr06 getInstance() {
-		//double check
 		if (INSTANCE == null) {
+			//双重检查
 			synchronized (Mgr06.class) {
 				if (INSTANCE == null) {
 					try {
