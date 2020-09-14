@@ -210,5 +210,15 @@ NAT设置，发现.2已经被当作网关了
 
 
 
+修改完配置文件后，需要重启网络服务，使配置文件生效
+
+service  network restart
+
+![image-20200915071004319](01-vmware12安装linux虚拟机.assets/image-20200915071004319.png)
+
+
+
+网关的名GATEWAY，不是NETAWAY
+
 
 
