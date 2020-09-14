@@ -38,15 +38,21 @@
 
 ![image-20200914224051282](01-vmware12安装linux虚拟机.assets/image-20200914224051282.png)
 
-
+![image-20200914224745366](01-vmware12安装linux虚拟机.assets/image-20200914224745366.png)
 
 ---
 
 
 
-#### 安装centOS 操作系统
+#### 安装centOS 6.5操作系统
+
+双击CD/DVD，选择系统镜像
+
+![image-20200914224857462](01-vmware12安装linux虚拟机.assets/image-20200914224857462.png)
 
 
+
+开启虚拟机
 
 
 
