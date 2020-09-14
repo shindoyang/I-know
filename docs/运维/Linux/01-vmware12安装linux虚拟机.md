@@ -150,7 +150,7 @@ format格式化磁盘
 
 大致步骤：
 
-
+![image-20200915071327575](01-vmware12安装linux虚拟机.assets/image-20200915071327575.png)
 
 1、找到网卡位置：cd /etc/sysconfig/network-scripts/
 
