@@ -220,5 +220,7 @@ service  network restart
 
 网关的名GATEWAY，不是NETAWAY
 
+其实上面的流程，在CentOS7中是类似，不过CentOS7中的网卡配置中默认继承的ipv6的，但是该静态ip的方式还是和上述教程一样
+
 
 
