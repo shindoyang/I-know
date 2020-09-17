@@ -1,4 +1,5 @@
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -9,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class MyTest {
 	@Test
 	public void test() {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		Object person = context.getBean("person");
 		System.out.println(person);
 
