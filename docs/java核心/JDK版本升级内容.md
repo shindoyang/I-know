@@ -24,7 +24,7 @@
 
 
 
-#### JDK .16
+#### JDK 1.6
 
 1. 增强for循环语句
 
@@ -81,6 +81,43 @@
 4. 执行效率的提供。
 
    对对象针由64位压缩到32位指针相匹配的技术使得内存和内存带块的消耗得到了很大的降低因而提高了执行效率。提供了新的垃圾回收机制（G1）来降低垃圾回收的负载和增强垃圾回收的效果。
+   
+5. **try-with-resources 语句**，自动释放资源
+
+   我们在使用资源的时候，必须关闭资源，比如使用jdbc连接或者imputStream的时候，必须在finally中将资源关闭。然而有的时候我们会忘记关闭资源，有没有更好的办法？
+
+   ```java
+   SqlSession sqlSession = sqlSessionFactory.openSession();
+   try{
+       //......
+   }finally{
+       sqlSession.close();
+   }
+   ```
+
+   从JDK 1.7开始，Java 7 增强了try语句的功能，它允许在try关键字后跟一对圆括号，圆括号可以声明，初始化一个或多个资源，此处的资源是指那些必须在程序结束时必须关闭的资源（比如数据库连接、网络连接等），try语句在语句结束时会自动关闭这些资源。这种称为try-with-resources 语句。
+
+   ```java
+   try(SqlSession sql = SqlSessionFactory.openSession()){
+       //......
+   }
+   ```
+
+   像这样的话，执行完sqlSession会自动关闭，不用我们在finally中关闭，再也不用担心忘记关闭资源了。
+
+   那为什么可以这样关闭资源呢？是不是所有资源都可以这样关闭呢？
+
+   * 实际上只需要这些资源实现了Closeable 或者 AutoCloseAble接口，都可以实现自动关闭。
+
+   比如SqlSession就是implement  Closeable ， Closeable 继承了 AutoCloseable  （since 1.7）
+
+   几乎所有的资源都可以用这种方式实现自动关闭资源，比如OutputStream，BufferedReader，PrintStream，InputStream 等都可以。据说到目前为止，只有javaMail Transport对象不能利用这种方式实现自动关闭。
+
+   **注意：**如果try()里面有个资源，用逗号分开，资源的close方法的调用顺序与他们的创建顺序相反。
+
+   带有资源的try语句可以像一般的try 语句一样具有catch和finally块。
+
+   在try-with-resources语句中，任何catch 或finally 块都是在声明的资源被关闭后才会执行的。
 
 
 
