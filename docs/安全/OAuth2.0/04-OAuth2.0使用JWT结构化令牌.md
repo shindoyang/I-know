@@ -53,5 +53,63 @@
 
 ### 2、Spring Security 使用SHA对JWT信息签名
 
+1）授权服务器 在OAuth2Configuration中定义jwt生成策略：
+
+```java
+@Configuration
+public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
+    //token发放等其他逻辑
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Override
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(
+                Arrays.asList(customTokenEnhancer(), jwtAccessTokenConverter()));
+
+        endpoints.tokenStore(tokenStore())
+                .tokenEnhancer(jwtAccessTokenConverter())
+                .authenticationManager(authenticationManager)
+                .userDetailsService(myUserDetailService)
+                .tokenEnhancer(tokenEnhancerChain);
+    }
+
+    @Bean
+    public TokenStore tokenStore() {
+        return new JwtTokenStore(jwtAccessTokenConverter());
+    }
+
+    //使用SHA256
+    @Bean
+    protected JwtAccessTokenConverter jwtAccessTokenConverter() {
+        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        jwtAccessTokenConverter.setSigningKey("123");
+        return jwtAccessTokenConverter;
+    }
+}
+
+```
+
+除了常规的内容，也可以增强token 内容：
+
+```java
+public class CustomTokenEnhancer implements TokenEnhancer {
+
+    @Override
+    public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+        final Map<String, Object> additionalInfo = new HashMap<>();
+        // 注意添加的额外信息，最好不要和已有的json对象中的key重名，容易出现错误
+        MyUserEntity userByUid = feignUserService.getUserByUid(user.getUsername());
+        additionalInfo.put("username",userByUid.getLoginName());
+        additionalInfo.put("accountSystemKey",userByUid.getAccountSystemKey());
+        ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
+       return accessToken;
+    }
+}
+```
+
+
+
 ### 3、Spring Security 使用RSA对JWT信息签名
 
