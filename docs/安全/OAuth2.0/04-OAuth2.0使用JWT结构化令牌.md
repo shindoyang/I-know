@@ -109,7 +109,70 @@ public class CustomTokenEnhancer implements TokenEnhancer {
 }
 ```
 
+2）资源服务器验证 JWT 签名合法性
+
+```java
+
+@EnableResourceServer
+@Configuration
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/druid/**", "/public/**").permitAll()
+                .antMatchers("/**").authenticated()
+                .anyRequest().authenticated().and().csrf().disable();
+    }
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) {
+        resources.resourceId("user").tokenStore(tokenStore());
+    }
+
+    @Bean
+    protected JwtAccessTokenConverter jwtTokenEnhancer() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey("123");
+        return converter;
+    }
+
+    @Bean
+    public TokenStore tokenStore() {
+        return new JwtTokenStore(jwtTokenEnhancer());
+    }
+
+}
+```
+
+3）JWT   token校验
+
+资源服务器在接收到第三方请求时，会校验请求头上携带的JWT  token ，如果是对称加密，那么SHA256的key需要一致，不然会报invaild  token异常
+
 
 
 ### 3、Spring Security 使用RSA对JWT信息签名
+
+1）授权服务器使用RSA私钥加密的JWT
+
+```java
+    @Bean
+    protected JwtAccessTokenConverter jwtAccessTokenConverter() {
+        /*
+        //使用SHA256加密JWT
+        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        jwtAccessTokenConverter.setSigningKey("123");
+        return jwtAccessTokenConverter;*/
+
+        //使用RSA私钥加密JWT
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("jwt.jks"), "Utcook".toCharArray());
+        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        jwtAccessTokenConverter.setKeyPair(keyStoreKeyFactory.getKeyPair("authentication-server"));
+        return jwtAccessTokenConverter;
+    }
+```
+
+2）资源服务器使用RSA公钥解密JWT
+
+```java
+
+```
 
