@@ -223,6 +223,25 @@ jks证书生成步骤：
 2）资源服务器使用RSA公钥解密JWT
 
 ```java
+    @Bean
+    protected JwtAccessTokenConverter jwtTokenEnhancer() {
+        /*
+        //使用SHA256解密JWT
+        CustomJwtAccessTokenConverter converter = new CustomJwtAccessTokenConverter();
+        converter.setSigningKey("123");
+        return converter;*/
 
+        //使用RSA公钥解密JWT
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        Resource resource = new ClassPathResource("public.txt");
+        String publicKey = null;
+        try {
+            publicKey = new String(FileCopyUtils.copyToByteArray(resource.getInputStream()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        converter.setVerifierKey(publicKey);
+        return converter;
+    }
 ```
 
