@@ -151,6 +151,40 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 
 ### 3、Spring Security 使用RSA对JWT信息签名
 
+jks证书生成步骤：
+
+> https://stackoverflow.com/questions/62055008/spring-boot-jwt-jks-file-and-public-key
+
+* 电脑安装对应版本的openssl
+
+  > https://oomake.com/download/openssl
+
+* 把openssl的bin目录设置为环境变量
+
+  ![image-20200928231618993](04-OAuth2.0使用JWT结构化令牌.assets/image-20200928231618993.png)
+
+* 最简方式生成jks文件及其公钥
+
+  在cmd窗口输入以下命令：
+
+  keytool -genkeypair -alias authentication-server -keyalg RSA -dname "CN=GC,OU=DC,O=BatmanCorp,L=GT,C=Gotham" -keystore jwt.jks -keypass Utcook -storepass Utcook
+
+  执行命令后，会在c盘个人目录下生成对应的 jwt.jks 文件
+
+  ![image-20200928231859526](04-OAuth2.0使用JWT结构化令牌.assets/image-20200928231859526.png)
+
+  再执行以下命令，在cmd窗口显示公钥信息：
+
+  keytool -list -rfc --keystore jwt.jks | openssl x509 -inform pem -pubkey -noout
+
+  ![image-20200928232024259](04-OAuth2.0使用JWT结构化令牌.assets/image-20200928232024259.png)
+
+  将公钥内容单独拷贝出来，使用txt格式文本存放。
+
+  至此，jks和对应的公钥文件已生成完毕，可以放到对应项目的资源目录下使用。<详情见下方工程使用>
+
+* 
+
 1）授权服务器使用RSA私钥加密的JWT
 
 ```java
