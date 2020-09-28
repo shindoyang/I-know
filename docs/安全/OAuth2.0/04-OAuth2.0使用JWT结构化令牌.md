@@ -183,7 +183,23 @@ jks证书生成步骤：
 
   至此，jks和对应的公钥文件已生成完毕，可以放到对应项目的资源目录下使用。<详情见下方工程使用>
 
-* 
+* 方法二：
+
+  1首先，我像这样创建JKS文件： 
+
+  keytool -genkeypair -alias authentication-server -keyalg RSA -dname "CN=GC,OU=DC,O=BatmanCorp,L=GT,C=Gotham" -keystore auth-server.jks -keypass batman20; -storepass bruce20; -validity 180 -keysize 2048
+
+  2创建P12文件 
+
+  keytool -importkeystore -srckeystore auth-server.jks -srcstorepass bruce20; -srckeypass batman20; -srcalias authentication-server -destalias authentication-server -destkeystore auth-server.p12 -deststoretype PKCS12 -deststorepass batman_20; -destkeypass batman_20;
+
+  3创建PEM文件 
+
+  openssl pkcs12 -in auth-server.p12 -nodes -nocerts -out auth-server-private-key.pem
+
+  4创建Pub文件
+
+  openssl rsa -in auth-server-private-key.pem -pubout -out PublicKey.pub
 
 1）授权服务器使用RSA私钥加密的JWT
 
