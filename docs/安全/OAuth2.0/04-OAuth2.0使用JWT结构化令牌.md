@@ -203,6 +203,12 @@ jks证书生成步骤：
 
 1）授权服务器使用RSA私钥加密的JWT
 
+在授权服务上添加jks私钥
+
+![image-20200929082208643](04-OAuth2.0使用JWT结构化令牌.assets/image-20200929082208643.png)
+
+JWT加密方法：
+
 ```java
     @Bean
     protected JwtAccessTokenConverter jwtAccessTokenConverter() {
@@ -221,6 +227,12 @@ jks证书生成步骤：
 ```
 
 2）资源服务器使用RSA公钥解密JWT
+
+在资源服务器上添加私钥
+
+![image-20200929082148742](04-OAuth2.0使用JWT结构化令牌.assets/image-20200929082148742.png)
+
+使用RSA解密JWT
 
 ```java
     @Bean
