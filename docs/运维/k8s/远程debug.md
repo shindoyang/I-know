@@ -80,3 +80,21 @@ sh  forword.sh pod/<pod_name>  -n <spacename> <本地端口>:<debug端口>
 
 #### IDEA中配置远程调用
 
+![Image](Untitled.assets/Image-1601473987067.png)
+
+**配置romete完成后，直接选择remote入口启动：**
+
+![Image](Untitled.assets/Image-1601474034178.png)
+
+**启动成功，ide控制台会输出如下信息：**
+
+![Image](Untitled.assets/Image-1601474054903.png)
+
+**转发脚本会输出转发日志信息：**
+
+![Image](Untitled.assets/Image-1601474094141.png)
+
+以上报错信息请忽略
+
+至此，可以本地打断点调试远程服务端请求
+
