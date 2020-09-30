@@ -9,3 +9,50 @@
 #### k8s服务部署开放debug端口
 
 ![Image](Untitled.assets/Image-1601473348065.png)
+
+
+
+---
+
+**具备以上条件后，才有下面的debug模式：**
+
+#### 转发脚本 forward.sh，脚本内容如下：
+
+```shell
+# windows下请使用git bash运行
+# 脚本所接参数和kubectl port-forward一样
+
+parameters=$*
+# 脚本不接参数，可自定义参数内容  
+#parameters="pod/<pod_name> local_port:pod_port"
+
+
+function usage(){
+  echo "Usage: `basename $0` [kubectl port-forward options] "
+  kubectl port-forward --help   
+}
+
+function conn() {
+  while true; do
+    curl -s 127.0.0.1:$1 > /dev/null
+    sleep 5
+  done
+}
+
+function forward() {
+  kubectl port-forward $parameters --pod-running-timeout=1h &
+  local_port=$(echo $parameters|awk -F: '{print $1}'|awk '{print $NF}')
+  conn $local_port
+}
+
+
+if [ -z "$parameters" ]; then
+    usage
+    exit 55
+fi
+
+forward
+```
+
+
+
