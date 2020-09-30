@@ -54,5 +54,19 @@ fi
 forward
 ```
 
+在git shell 或cmd窗口 ，去到脚本所在目录，使用sh命令执行，执行转发模式由两种：service 或者pod
+
+1. 使用service模式转发
+
+先获取service名：
+
+![Image](Untitled.assets/Image-1601473697193.png)
+
+转发命令：
+
+```shell
+sh  forword.sh svc/<svc_name>  -n <spacename> <本地端口>:<debug端口>
+```
+
 
 
