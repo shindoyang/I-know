@@ -62,11 +62,21 @@ forward
 
 ![Image](Untitled.assets/Image-1601473697193.png)
 
-转发命令：
+svc 转发命令：
 
 ```shell
 sh  forword.sh svc/<svc_name>  -n <spacename> <本地端口>:<debug端口>
 ```
 
+2. 使用 pod 模式转发：
 
+![Image](Untitled.assets/Image-1601473870133.png)
+
+pod 转发命令：
+
+```shell
+sh  forword.sh pod/<pod_name>  -n <spacename> <本地端口>:<debug端口>
+```
+
+#### IDEA中配置远程调用
 
