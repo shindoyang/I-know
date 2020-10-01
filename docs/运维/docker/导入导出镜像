@@ -1,0 +1,6 @@
+### 导出镜像
+
+```shell
+docker save <image_name>  > /usr/local/<save_name>.tar
+```
+
