@@ -4,3 +4,9 @@
 docker save <image_name>  > /usr/local/<save_name>.tar
 ```
 
+导入镜像
+
+```shell
+docker load < /usr/local/<save_name>.tar
+```
+
