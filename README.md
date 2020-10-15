@@ -2,6 +2,14 @@
 
 # I-know
 
+# 学习路线：
+
+路线还是java 多线程 jvm spring springmvc springboot springcloud nio netty + 大数据
+
+
+
+
+
 ### 千锤百炼、韬光养晦
 
 手中无剑，如何仗剑走天涯
