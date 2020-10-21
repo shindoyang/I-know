@@ -14,7 +14,9 @@
 
 istio : 32G内存，i7 9700K
 
+达摩院的定位: Research for solving the problem with profit and fun   为解决问题而做研究，创造价值并享受快乐
 
+对自己的定位是做一个善良的人，做有价值的事。
 
 向日葵远程回家
 
