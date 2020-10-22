@@ -8,6 +8,8 @@
 
 spring-security-oauth2  怎么检查token过期了：
 
+![image-20201022175921000](01-为什么要学OAuth2.0.assets/image-20201022175921000.png)
+
 DefaultTokenServices  --> 233
 
 -->OAuth2AccessToken  -->  DefaultOAuth2AccessToken  109
