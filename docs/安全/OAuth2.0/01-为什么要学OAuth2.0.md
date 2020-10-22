@@ -8,6 +8,8 @@
 
 spring-security-oauth2  怎么检查token过期了：
 
+访问资源时，资源服务器返回的token过期异常提示信息
+
 ![image-20201022175921000](01-为什么要学OAuth2.0.assets/image-20201022175921000.png)
 
 DefaultTokenServices  --> 233
