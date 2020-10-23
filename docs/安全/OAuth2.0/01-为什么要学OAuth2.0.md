@@ -43,3 +43,11 @@ DefaultTokenServices  --> 233
 ```
 
 ![image-20201022175713280](01-为什么要学OAuth2.0.assets/image-20201022175713280.png)
+
+
+
+
+
+请求路径的缓存原理：
+
+WebSessionServerRequestCache  
