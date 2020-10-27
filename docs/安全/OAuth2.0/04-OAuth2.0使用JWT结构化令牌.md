@@ -18,7 +18,7 @@
    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJwb21laSIsInNjb3BlIjpbInJlYWQiXSwiZXhwIjoxNjAzNzcwOTUxLCJhY2NvdW50U3lzdGVtS2V5IjoiY29vayIsImp0aSI6ImU3MWNlZDVlLWU4NGQtNGI5NS04YzM2LThhMmU1NTU2NzE2YSIsImNsaWVudF9pZCI6InNzby1nYXRld2F5IiwidXNlcm5hbWUiOiJwb21laSJ9.RjZqdtv4-z8HMwnnBhzlxOI910oCs2OG3ZJlLaX1yXI
    ```
 
-   > JWT令牌需要在公网上传输，所以在传输过程中，JWT令牌需要进行Base64编码以防止乱码，同时还需要进行签名及加密处理来防止数据信息泄露
+   > JWT令牌需要在**公网上传输**，所以在传输过程中，JWT令牌需要进行**Base64编码**以防止乱码，同时还需要进行签名及加密处理来防止数据信息泄露
 
    该字符串直接看没有意义，可以放到https://jwt.io/  网站的在线校验工具中，就可以看到解码后的数据：
 
