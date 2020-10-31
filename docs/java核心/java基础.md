@@ -50,6 +50,14 @@ InvocationHandler
 
 
 
+java类只能单继承，但是接口可以多实现
+
+接口和接口之间可以多继承，这个可以看spring的DefaultListableBeanFactory 的类图继承就比较清晰。
+
+
+
+
+
 
 
 
