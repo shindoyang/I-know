@@ -6,6 +6,12 @@
 
 路线还是java 多线程 jvm spring springmvc springboot springcloud nio netty + 大数据
 
+在架构的思路中，你要有趁手的工具，这样才能编制你的“大厦”；
+
+就好比做木工的时候，你需要先了解你手里的工具。
+
+
+
 
 
 成长为能与偶像肩并肩的硬核实力。
