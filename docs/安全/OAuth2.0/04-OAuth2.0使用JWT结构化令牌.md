@@ -25,9 +25,9 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJwb21laSIsInNjb3BlIjpbInJ
 ```json
    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiI0Nzc0OTk5MjYzNjQwMzEzODcwIiwic2NvcGUiOlsicmVhZCJdLCJleHAiOjE2MDY1NTI1MTAsImFjY291bnRTeXN0ZW1LZXkiOiJkZWZhdCIsImF1dGhvcml0aWVzIjpbImFuYWx5c2lzdG9vbF9hMV9hbmFseXNpc3Rvb2xfYWRtaW4iLCJkbXBfbW9kZWxfbWFuYWdlciIsImZpZWxkbW9kZWx0b29sX2FkbWluIiwiYW5hbHlzaXN0b29sX2FkbWluIiwiZG1wX2ZfZG9tYWluX2V4cGVydCIsImRtcF9mX21vZGVsX21hbmFnZXIiLCJkbXBfZG9tYWluX2V4cGVydCIsImZpZWxkbW9kZWx0b29sX2FkbWluZnVuIl0sImp0aSI6ImJkZWY1NGYyLTMzZmEtNDhkNS1hZDYzLWY0ZTBhMGE3YTAxYSIsImNsaWVudF9pZCI6InNzby1nYXRld2F5IiwidXNlcm5hbWUiOiJzaGluZG8ifQ.FBymvJxuLkuv2_uysOvTgSAbQx2KP48ceHAG6l2oKfQ
 ```
-   
 
-   
+
+
 
    > JWT令牌需要在**公网上传输**，所以在传输过程中，JWT令牌需要进行**Base64编码**以防止乱码，同时还需要进行签名及加密处理来防止数据信息泄露
 
@@ -36,7 +36,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJwb21laSIsInNjb3BlIjpbInJ
    ![image-20200928145345840](04-OAuth2.0使用JWT结构化令牌.assets/image-20200928145345840.png)
 
    
-   
+
    * **HEADER**  表示装载令牌类型和算法等信息，是JWT的头部。其中，type表示第二部分PAYLOAD是JWT类型，alg表示使用HS256对称签名的算法。
    
    * **PAYLOAD**  表示JWT的数据体，代表了一组数据。其中，sub（令牌的主题，一般设为资源拥有者的唯一标识）、exp（令牌的过期时间戳）、iat（令牌颁发的时间戳）是JWT规范性的生命，代表的常规性操作。不过，PAYLOAD表示的一组数据**允许我们自定义声明**。
@@ -45,11 +45,14 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJwb21laSIsInNjb3BlIjpbInJ
    
      ```java
      /*
+     ```
   * 1、先用Base64对 header.payload 编码
      * 2、再用加密算法加密上一步的结果，加密的时候需要加盐
-  */
+    */
      String encodingString = base64UrlEncode(header) +"." + base64UrlEncode(payload0);
  String signature = HMACSHA256(encodingString, "secret");
+     ```
+     
      ```
 
    3. 为什么要使用JWT令牌
@@ -266,5 +269,29 @@ JWT加密方法：
         converter.setVerifierKey(publicKey);
         return converter;
     }
+```
+
+
+
+
+
+### 本地解析jwt token
+
+查看源码：JwtAccessTokenConverter.class  L158   --->   JwtHelper.decode（String token）方法可以解析token
+
+> 源码支持来自于：spring-security-jwt:1.0.9.RELEASE
+
+```java
+String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiI0Nzc0OTk5MjYzNjQwMzEzODcwIiwic2NvcGUiOlsicmVhZCJdLCJleHAiOjE2MDcwNzI0NjcsImFjY291bnRTeXN0ZW1LZXkiOiJkZWZhdCIsImF1dGhvcml0aWVzIjpbImFwcGF1dGhfYWRtaW4iLCJkZXZlbG9wZXJfZGV2ZWxvcGVyX21pZGRsZV9hZG1pbiIsImRldmVsb3Blcl9kZXZlbG9wZXJfbWlkZGxlX2ZpZWxkX21vZGVsIiwiYW5hbHlzaXN0b29sX2ExX2FuYWx5c2lzdG9vbF9hZG1pbiIsImRldmVsb3Blcl9kZXZlbG9wZXJfbWlkZGxlX3Byb2Nlc3NfZ3VpZGFuY2UiLCJkbXBfbW9kZWxfbWFuYWdlciIsImFwcGF1dGhfYXBwX2RldmVsb3BlciIsImRtcF9mX21vZGVsX21hbmFnZXIiLCJhcHBhdXRoX2luaXRfYXBwIiwiZmllbGRtb2RlbHRvb2xfYXBwYXV0aF91cGRhdGVfZnVuYyIsImFwcGF1dGhfdXBkYXRlX2Z1bmMiLCJmaWVsZG1vZGVsdG9vbF9hZG1pbiIsImFuYWx5c2lzdG9vbF9hZG1pbiIsImRtcF9mX2RvbWFpbl9leHBlcnQiLCJkbXBfZG9tYWluX2V4cGVydCIsImRldmVsb3Blcl9kZXZlbG9wZXJfbWlkZGxlX2J1c2luZXNzX2FuYWx5c2lzIiwiZmllbGRtb2RlbHRvb2xfYWRtaW5mdW4iXSwianRpIjoiZWJmNzBjMzYtYmI0Zi00ZTNjLWI5ZjYtZmM2NTBkMjk0MzdkIiwiY2xpZW50X2lkIjoic3NvLWdhdGV3YXkiLCJ1c2VybmFtZSI6InNoaW5kbyJ9.b_q0RkgvOvrGUayZZu7GAraf_ET6YLtFYLs2rvLNV5M";
+
+        Map<String, String> header = new HashMap<>();
+        Map<String, String> headers = JwtHelper.headers(token);
+        headers.entrySet().stream().forEach(entry -> {
+            header.put(entry.getKey(), entry.getValue());
+        });
+        Map<String, Object> result = new HashMap<>();
+        result.put("PAYLOAD", JSONObject.parse(JwtHelper.decode(token).getClaims()));
+        result.put("HEADER", header);
+        System.out.println(JSONObject.toJSONString(result));
 ```
 
