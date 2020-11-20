@@ -29,6 +29,8 @@
 
 贝佐斯说：“我把自己想象成80岁的模样，并思考：现在回望我的一生，我要把遗憾事件的数量降到最低。”
 
+善良比聪明更难
+
 istio : 32G内存，i7 9700K
 
 达摩院的定位: Research for solving the problem with profit and fun   为解决问题而做研究，创造价值并享受快乐
