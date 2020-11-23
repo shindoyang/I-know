@@ -31,6 +31,8 @@
 
 善良比聪明更难
 
+选择比天赋更重要。天赋和选择不同：
+
 istio : 32G内存，i7 9700K
 
 达摩院的定位: Research for solving the problem with profit and fun   为解决问题而做研究，创造价值并享受快乐
