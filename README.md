@@ -6,6 +6,10 @@
 
 # I-know
 
+如果只在乎结果，那么就会想着怎么走捷径，而忽略了沿途的美景。
+
+
+
 # 学习路线：
 
 路线还是java 多线程 jvm spring springmvc springboot springcloud nio netty + 大数据
