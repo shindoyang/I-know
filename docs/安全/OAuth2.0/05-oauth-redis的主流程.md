@@ -1,3 +1,27 @@
+oauth2  reference token 方案
+
+1、在oauth发放tokend的时候，时候最后都是调用myUserDeatailService 获取用户权限的，这时，把用户权限放到redis缓存，然后从权限里面塞入权限对应的key
+
+2、在资源服务器，重写aouth过滤器获取token的逻辑，根据token里面的uuid从redis里面重新获取真正的权限，并塞入securityContext里面。
+
+待验证技术点：
+
+1、第一步的token过期时间
+
+2、第二步，能否实现过滤器重写
+
+
+
+
+
+
+
+//--------------------------------
+
+
+
+
+
 oauth-redis 的主流程：
 
 
@@ -13,7 +37,7 @@ RedisTokenStore
 
 
 入口：
-TokenEnpoint.java
+TokenEndpoint.java
 @RequestMapping(
         value = {"/oauth/token"},
         method = {RequestMethod.POST}
