@@ -32,9 +32,29 @@ RedisTokenStore
 
 
 
+//oauth 登陆页入口：
 
+AbstractAuthenticationProcessingFilter
 
+212            authResult = attemptAuthentication(request, response);  会碰撞自定义过滤链，并最终走usernamelogin接口的  from   过滤器
 
+![image-20201202112323124](05-oauth-redis的主流程.assets/image-20201202112323124.png)
+
+![image-20201202103226847](05-oauth-redis的主流程.assets/image-20201202103226847.png)
+
+并最终在该类的 successfulAuthentication 方法中，把session写入到securityContext中
+
+![image-20201202103410717](05-oauth-redis的主流程.assets/image-20201202103410717.png)
+
+在 AuthorizationCodeTokenGranter  类生成accesstoken
+
+![image-20201202111153550](05-oauth-redis的主流程.assets/image-20201202111153550.png)
+
+![image-20201202111217503](05-oauth-redis的主流程.assets/image-20201202111217503.png)
+
+![image-20201202111350636](05-oauth-redis的主流程.assets/image-20201202111350636.png)
+
+// SSO 单点登陆入口：
 
 入口：
 TokenEndpoint.java
