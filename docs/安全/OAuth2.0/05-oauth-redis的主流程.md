@@ -1,3 +1,5 @@
+
+
 oauth2  reference token 方案
 
 1、在oauth发放tokend的时候，时候最后都是调用myUserDeatailService 获取用户权限的，这时，把用户权限放到redis缓存，然后从权限里面塞入权限对应的key
@@ -52,7 +54,25 @@ AbstractAuthenticationProcessingFilter
 
 ![image-20201202111217503](05-oauth-redis的主流程.assets/image-20201202111217503.png)
 
+
+
 ![image-20201202111350636](05-oauth-redis的主流程.assets/image-20201202111350636.png)
+
+token 的authorities集合转String ，参考：JwtAccessTokenConverter.java  的266行
+
+![image-20201202135845005](05-oauth-redis的主流程.assets/image-20201202135845005.png)
+
+
+
+![image-20201202140154207](05-oauth-redis的主流程.assets/image-20201202140154207.png)
+
+
+
+资源服务器解析token流程：
+
+![image-20201202174158358](05-oauth-redis的主流程.assets/image-20201202174158358.png)
+
+
 
 // SSO 单点登陆入口：
 
