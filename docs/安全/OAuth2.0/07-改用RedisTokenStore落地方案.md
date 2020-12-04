@@ -15,6 +15,10 @@
 
 ### 概述
 
+改用security-oauth提供的redisTokenStore方式存储token
+
+![image-20201204082510036](07-改用RedisTokenStore落地方案.assets/image-20201204082510036.png)
+
 1. oauth授权服务器采用redisTokenStore存储token，响应给用户accessToken是redis中值对应的key，总体token大小不超1k。
 
    ```json
@@ -118,7 +122,7 @@ public TokenStore tokenStore() {
 
 #### 结论
 
-不支持JwtTokenStore 和 RedisTokenStore 共存。
+<font style='color:red'>不支持JwtTokenStore 和 RedisTokenStore 共存。</font>
 
 查看源码，可发现，TokenStore是在创建DefaultTokenService对象时设置的。
 
