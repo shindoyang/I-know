@@ -22,7 +22,7 @@
 
 # 学习路线：
 
-路线还是java 多线程 jvm spring springmvc springboot springcloud nio netty + 大数据
+路线还是 java基础(java8)--> 多线程--> jvm--> spring--> springmvc--> springboot--> springcloud -->nio--> netty          + 大数据
 
 在架构的思路中，你要有趁手的工具，这样才能编制你的“大厦”；
 
