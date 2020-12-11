@@ -139,3 +139,9 @@ oauth改用spring session存储oauth token，当oauth伸缩为2个实例的时�
 ​		
 
 要debug，看下在这一步，oauth校验code的时候，出了什么问题。
+
+原因：在于authorizationcode的校验，是通过随机值来校验的（RandomValueAuthorizationCodeServices.java-->consumeAuthorizationCode(String code)），如此一来，code是跟容器实例内存走的，只要开多实例，那么在负载采用轮询机制的时候，就会找不到了。
+
+![image-20201211180116930](05-oauth-redis的主流程.assets/image-20201211180116930.png)
+
+![image-20201211180625219](05-oauth-redis的主流程.assets/image-20201211180625219.png)
