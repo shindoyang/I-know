@@ -30,7 +30,7 @@ https://download.docker.com/linux/centos/docker-ce.repo
 
 ![image-20201218103854464](02-初始docker.assets/image-20201218103854464.png)
 
-1、安装组件包
+### 1、安装组件包
 
 -y ：自动确认安装
 
@@ -46,7 +46,7 @@ docker的内部容器如果要做数据存储，是需要通过device-mapper-per
 yum install -y yum-utils device-mapper-persistent-data lvm2
  ```
 
-2、修改yum的安装源
+### 2、修改yum的安装源
 
 yum-config-manager ：是上一步yum-utils准备的简化工具
 
@@ -56,23 +56,49 @@ yum-config-manager ：是上一步yum-utils准备的简化工具
 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```
 
-3、yum自动检测哪个哪个安装最快，优先使用
+### 3、yum自动检测哪个哪个安装最快，优先使用
 
 ```she
 yum makecache fast
 ```
 
-4、安装docker
+### 4、安装docker
 
 ```shell
 yum -y install docker-ce
 ```
 
-5、验证docker是否安装：
+### 5、验证docker是否安装
 
 ```shell
 service docker start
 ```
 
 使用docker常用命令测试docker是否正常运行。
+
+```
+docker version #查看docker版本号
+```
+
+docker 是cs 架构，使用docker version可以看到响应了Client 和 Server 两方面的信息
+
+![image-20201218110809803](02-初始docker.assets/image-20201218110809803.png)
+
+下载测试国外的测试镜像
+
+```shell
+docker pull hello-world
+```
+
+简单创建hello-world的容器
+
+```shell
+docker run hello-world
+```
+
+![image-20201218111141088](02-初始docker.assets/image-20201218111141088.png)
+
+### 设置阿里云的加速代理
+
+TODO 
 
