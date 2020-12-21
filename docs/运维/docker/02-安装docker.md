@@ -100,5 +100,20 @@ docker run hello-world
 
 ### 设置阿里云的加速代理
 
-TODO 
+1、访问阿里云的官方首页：www.aliyun.com
 
+2、在阿里云首页搜索框输入：容器镜像服务
+
+![image-20201221075943462](02-安装docker.assets/image-20201221075943462.png)
+
+3、点击“立即开通”
+
+4、点击新页面左侧菜单栏的镜像加速器：
+
+![image-20201221080057980](02-安装docker.assets/image-20201221080057980.png)
+
+5、每个人的docker加速地址都不一样，相当于阿里云给每个用户都做了一个docker代理。
+
+6、将对应系统的操作问的配置shell语句，拷贝到xshell中运行，即可。
+
+可以测试：docker pull tomcat
