@@ -26,6 +26,14 @@
 
 详细说明见图：
 
+jwtTokenStore不保存accessToken，每次都是新生成。
+
+![image-20201223151648344](08-spring session优化oauth的完整方案.assets/image-20201223151648344.png)
+
+所以不会走下面的代码逻辑
+
+![image-20201223151733810](08-spring session优化oauth的完整方案.assets/image-20201223151733810.png)
+
 ![oauth-session改造说明](08-spring session 配合oauth.assets/oauth-session改造说明.jpg)
 
 ### 源码：
