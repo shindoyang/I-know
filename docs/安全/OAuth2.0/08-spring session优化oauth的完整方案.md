@@ -24,6 +24,10 @@
 
 3、使用redisTokenStore存储后，默认的DefaultTokenServices类中createAccessToken方法的逻辑，会首先从redis中取出旧accessToken，若accessToken未过期，则不重新生成key，只是替换redis缓存中key对应的accessToken的值，然后直接返回。这一点显然是设计者基于性能考虑做了思考，所以并未每次删除旧key，再存一次，而是直接把key对应的值做更新。但是因为我方目前jwttoken的模式已经有业务在用，不能直接切换，所以本次改造只是采用了redisTokenStore存储以便于oauth伸缩，但accessToken仍保留jwtTokenEnhancer的方式做增强响应。这样就会导致如果key不变的情况下，如果用户前一次token未过期，后面即使权限有变动，即值有改动，对于用户来说，token也是没变化的。基于这个情况，我们只能替换DefaultTokenServices，采取每次都生成新的key的方式处理。
 
+详细说明见图：
+
+![oauth-session改造说明](08-spring session 配合oauth.assets/oauth-session改造说明.jpg)
+
 ### 源码：
 
 授权服务器配置 OAuth2Configuration.java
