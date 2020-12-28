@@ -1,3 +1,5 @@
+Dockerfile中提供了三个执行命令：
+
 ![image-20201225081904435](10-Dockerfile执行指令.assets/image-20201225081904435.png)
 
 三个执行命令的区别：
@@ -31,4 +33,20 @@ Dockerfile中如果书写了多行Entrypoint命令，只有最后一行会被执
 ![image-20201225155658440](10-Dockerfile执行指令.assets/image-20201225155658440.png)
 
 entrypoint一定会被运行，而cmd不一定会被运行
+
+例子：
+
+![image-20201228075423128](10-Dockerfile执行指令.assets/image-20201228075423128.png)
+
+![image-20201228075526343](10-Dockerfile执行指令.assets/image-20201228075526343.png)
+
+构建镜像：
+
+![image-20201228082130588](10-Dockerfile执行指令.assets/image-20201228082130588.png)
+
+可以发现上述构建镜像时，只执行了RUN命令。
+
+![image-20201228082222171](10-Dockerfile执行指令.assets/image-20201228082222171.png)
+
+启动容器的时候，CMD命令执行
 

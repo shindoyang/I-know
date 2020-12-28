@@ -1,0 +1,8 @@
+搭建项目：
+
+顶级项目，管理是哪个字项目：sever、api、model
+
+然后将redis、mysql、zookeepoer、rabbitMQ等中间间本地部署并启动。
+
+
+
