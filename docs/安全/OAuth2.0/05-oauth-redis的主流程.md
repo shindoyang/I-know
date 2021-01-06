@@ -99,6 +99,14 @@ AbstractTokenGranter.java
 
 
 
+code校验入口：
+
+AuthorizationEndpoint.class
+
+
+
+
+
 RedisTokenStore.java
 
 180 
