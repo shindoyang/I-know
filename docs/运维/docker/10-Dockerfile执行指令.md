@@ -50,3 +50,51 @@ entrypoint一定会被运行，而cmd不一定会被运行
 
 启动容器的时候，CMD命令执行
 
+![image-20210113081204980](10-Dockerfile执行指令.assets/image-20210113081204980.png)
+
+启动容器，发现执行了CMD命令
+
+![image-20210113081339777](10-Dockerfile执行指令.assets/image-20210113081339777.png)
+
+但是如果在创建容器时，使用了额外的命令，这个命令会取代CMD命令，从上图可以看到 ls 命令取代了 cmd命令，Dockerfile中的CMD命令并没有执行。这就是CMD命令不一定执行的说法的由来。
+
+再来看下ENTRYPOINT命令：
+
+修改刚才的Dockerfile文件
+
+![image-20210113081959799](10-Dockerfile执行指令.assets/image-20210113081959799.png)
+
+和cmd没什么差别。
+
+但是将cmd和entrypoint组合使用的话，就大有所为了：
+
+![image-20210113082154298](10-Dockerfile执行指令.assets/image-20210113082154298.png)
+
+![image-20210113082218422](10-Dockerfile执行指令.assets/image-20210113082218422.png)
+
+当entrypoint和cmd紧挨着的时候，两个命令会组合使用。
+
+作用：CMD可以接受外部传参。
+
+![image-20210113082436187](10-Dockerfile执行指令.assets/image-20210113082436187.png)
+
+上图我们发现 -aux 替换了Dockerfile中 -ps命令，使输出结果呈现bsd格式。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
