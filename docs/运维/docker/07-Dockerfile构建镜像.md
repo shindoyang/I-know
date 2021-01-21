@@ -20,4 +20,6 @@ ADD：是将指定文件或目录**复制**到镜像的指定目录下  （和Do
 
 使用docker build 命令创建镜像（以下例子使用相对路径）
 
+docker build -t mashibing.com/webapp:1.0 .
+
 ![image-20201223154534277](07-Dockerfile构建镜像.assets/image-20201223154534277.png)

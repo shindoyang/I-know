@@ -1,6 +1,6 @@
 ### 技术选型
 
-一般来说，常见的安全管理技术栈的组合是这样的：
+一般来说，常见的安全管理技术栈的<code>组合</code>是这样的：
 
 * SSM + Shiro
 
@@ -16,7 +16,22 @@
 
 > 参考：https://www.cnblogs.com/beixuan/p/13401771.html
 
+---
+
 ### 过滤器链的加载原理
 
 ![02-SpringSecurity基本原理](简介.assets/02-SpringSecurity基本原理.png)
 
+SpringBoot 对 Security 的自动配置
+
+> https://docs.spring.io/spring-security/site/docs/5.3.4.RELEASE/reference/html5/#servlet-hello
+
+---
+
+### SpringSecurity web 权限方案
+
+#### 用户认证
+
+##### 设置用户名密码
+
+![04-web权限方案-认证-设置用户名和密码](笔记截图.assets/04-web权限方案-认证-设置用户名和密码.png)
