@@ -1,3 +1,5 @@
+### 技术选型
+
 一般来说，常见的安全管理技术栈的组合是这样的：
 
 * SSM + Shiro
@@ -6,11 +8,15 @@
 
 以上只是推荐组合
 
-
-
 ---
+
+### 入门案例
 
 ![03-入门案例](简介.assets/03-入门案例.png)
 
 > 参考：https://www.cnblogs.com/beixuan/p/13401771.html
+
+### 过滤器链的加载原理
+
+![02-SpringSecurity基本原理](简介.assets/02-SpringSecurity基本原理.png)
 
