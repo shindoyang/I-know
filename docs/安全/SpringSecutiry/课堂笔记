@@ -75,3 +75,6 @@ protected void configure(HttpSecurity http)throws Exception{
 
 要注意hasRole、hasAnyRole这两个方法，底层源码判断的时候，会在前面加上ROLE_，所以给用户授权的时候，要记得加上这个前缀。
 
+##### 自定义403页面
+
+![08-web权限方案-配置403访问页面](课堂笔记.assets/08-web权限方案-配置403访问页面.png)
