@@ -67,3 +67,11 @@ protected void configure(HttpSecurity http)throws Exception{
 
 ![06-web权限方案-认证-自定义登录页面](课堂笔记.assets/06-web权限方案-认证-自定义登录页面.png)
 
+#### 用户授权
+
+##### 基于权限访问控制
+
+![07-web权限方案-基于角色或权限的访问控制](课堂笔记.assets/07-web权限方案-基于角色或权限的访问控制.png)
+
+要注意hasRole、hasAnyRole这两个方法，底层源码判断的时候，会在前面加上ROLE_，所以给用户授权的时候，要记得加上这个前缀。
+
