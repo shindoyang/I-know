@@ -43,3 +43,27 @@ SpringBoot 对 Security 的自动配置
 ![05-web权限方案-认证-查询数据库认证](课堂笔记.assets/05-web权限方案-认证-查询数据库认证.png)
 
 注意：SpringBoot 2.2 之后，默认使用Mysql8，需要在driverClass配置上加cj，而且url需要设置时区
+
+
+
+##### 自定义用户登录页面
+
+安全设置参考如下：
+
+```java
+@Override
+protected void configure(HttpSecurity http)throws Exception{
+    http.formLogin()//自定义自己编写的登录页面
+        .loginPage("/login.html")//设置登录页面
+        .loginProcessingUrl("/user/login")//登录访问路径
+        .defaultSuccessUrl("/test/index").permitAll() //这里加上permitAll() 是为了让这个跳转逻辑不需要认证
+        .and()
+        .authorizeRequest() //可以定义哪些方法被保护，哪些方法不被保护
+        	.antMatchers("user/login","/test/hello").permitAll() //设置哪些路径可以直接访问，不需要认证
+        anyRequest().authenticated()//表示所有请求都需要认证
+        and().csrf().disable();//关闭csrf的防护
+}
+```
+
+![06-web权限方案-认证-自定义登录页面](课堂笔记.assets/06-web权限方案-认证-自定义登录页面.png)
+
