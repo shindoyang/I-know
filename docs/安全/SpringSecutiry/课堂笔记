@@ -78,3 +78,7 @@ protected void configure(HttpSecurity http)throws Exception{
 ##### 自定义403页面
 
 ![08-web权限方案-配置403访问页面](课堂笔记.assets/08-web权限方案-配置403访问页面.png)
+
+##### 注解使用
+
+![09-web权限方案-注解使用](课堂笔记.assets/09-web权限方案-注解使用.png)
