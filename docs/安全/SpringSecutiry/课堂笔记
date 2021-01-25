@@ -82,3 +82,24 @@ protected void configure(HttpSecurity http)throws Exception{
 ##### 注解使用
 
 ![09-web权限方案-注解使用](课堂笔记.assets/09-web权限方案-注解使用.png)
+
+---
+
+#### 用户注销
+
+![10-web权限方案-用户注销](课堂笔记.assets/10-web权限方案-用户注销.png)
+
+> logout接口实际调用的是security框架底层的：SecurityContextLogoutHandler.java的logout方法
+
+除了调用底层接口，还可以显示调用：
+
+```java
+new SecurityContextLogoutHandler().logout(request, null, null);
+```
+
+
+
+
+
+
+
