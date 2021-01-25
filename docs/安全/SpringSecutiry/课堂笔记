@@ -106,3 +106,11 @@ new SecurityContextLogoutHandler().logout(request, null, null);
 
 
 ![12-web权限方案-记住用户实现](课堂笔记.assets/12-web权限方案-记住用户实现.png)
+
+#### CSRF
+
+![image-20210125160410895](课堂笔记.assets/image-20210125160410895.png)
+
+![image-20210125160416914](课堂笔记.assets/image-20210125160416914.png)
+
+![image-20210125160444219](课堂笔记.assets/image-20210125160444219.png)
