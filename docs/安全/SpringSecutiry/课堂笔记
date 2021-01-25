@@ -97,9 +97,12 @@ protected void configure(HttpSecurity http)throws Exception{
 new SecurityContextLogoutHandler().logout(request, null, null);
 ```
 
+#### 自动登录（记住我）
+
+![11-web权限方案-记住用户流程](课堂笔记.assets/11-web权限方案-记住用户流程.png)
 
 
 
 
 
-
+![12-web权限方案-记住用户实现](课堂笔记.assets/12-web权限方案-记住用户实现.png)
