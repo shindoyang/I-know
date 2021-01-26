@@ -126,3 +126,7 @@ new SecurityContextLogoutHandler().logout(request, null, null);
 ##### 数据模型介绍
 
 ![14-微服务权限方案-数据模型](课堂笔记.assets/14-微服务权限方案-数据模型.png)
+
+##### 案例技术介绍
+
+![15-微服务权限方案-案例技术介绍](课堂笔记.assets/15-微服务权限方案-案例技术介绍-1611625134276.png)
