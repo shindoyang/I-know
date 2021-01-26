@@ -114,3 +114,12 @@ new SecurityContextLogoutHandler().logout(request, null, null);
 ![image-20210125160416914](课堂笔记.assets/image-20210125160416914.png)
 
 ![image-20210125160444219](课堂笔记.assets/image-20210125160444219.png)
+
+---
+
+### SpringSecurity 微服务权限方案
+
+##### 认证授权过程分析
+
+![13-微服务权限方案-实现过程分析](课堂笔记.assets/13-微服务权限方案-实现过程分析.png)
+
