@@ -130,3 +130,7 @@ new SecurityContextLogoutHandler().logout(request, null, null);
 ##### 案例技术介绍
 
 ![15-微服务权限方案-案例技术介绍](课堂笔记.assets/15-微服务权限方案-案例技术介绍-1611625134276.png)
+
+##### 搭建项目工程
+
+![16-微服务权限方案-搭建项目工程](课堂笔记.assets/16-微服务权限方案-搭建项目工程.png)
