@@ -150,3 +150,7 @@ new SecurityContextLogoutHandler().logout(request, null, null);
 ##### 编写核心配置类
 
 ![20-微服务权限方案-编写代码（核心配置类）](课堂笔记.assets/20-微服务权限方案-编写代码（核心配置类）.png)
+
+##### 实现UserDetailsService
+
+![21-微服务权限方案-编写代码（UserDetailsService）](课堂笔记.assets/21-微服务权限方案-编写代码（UserDetailsService）.png)
