@@ -180,3 +180,7 @@ SecutiryContextPersistenceFilter：过滤链最前的一个过滤器
 ##### 认证流程的核心累和接口关系图
 
 ![24-认证流程中各核心类和接口的关系图](课堂笔记.assets/24-认证流程中各核心类和接口的关系图.jpg)
+
+##### 请求间共享认证信息
+
+![25-SpringSecurity原理-请求间共享认证信息](课堂笔记.assets/25-SpringSecurity原理-请求间共享认证信息.png)
