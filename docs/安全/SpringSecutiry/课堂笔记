@@ -139,3 +139,6 @@ new SecurityContextLogoutHandler().logout(request, null, null);
 
 ![17-微服务权限方案-编写代码（权限工具类）](课堂笔记.assets/17-微服务权限方案-编写代码（权限工具类）.png)
 
+##### 启动redis和nacos
+
+![18-微服务权限方案-启动redis和nacos](课堂笔记.assets/18-微服务权限方案-启动redis和nacos.png)
