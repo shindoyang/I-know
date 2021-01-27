@@ -161,8 +161,19 @@ new SecurityContextLogoutHandler().logout(request, null, null);
 
 ##### Security原理--认证流程
 
-![23-认证流程](课堂笔记.assets/23-认证流程-1611719073437.jpg)
+![image-20210127135743707](课堂笔记.assets/image-20210127135743707.png)
 
 ##### Security原理--认证流程源码跟踪
 
 ![23-SpringSecurity原理（认证流程）](课堂笔记.assets/23-SpringSecurity原理（认证流程）.png)
+
+##### 权限访问流程
+
+ExceptionTranslationFilter：处理异常
+
+FilterSecurityInterceptor：过滤链的最后一个过滤器：根据资源权限来判断当前请求是否能访问这个资源
+
+SecutiryContextPersistenceFilter：过滤链最前的一个过滤器
+
+![24-SpringSecurity原理（权限访问流程）](课堂笔记.assets/24-SpringSecurity原理（权限访问流程）.png)
+
