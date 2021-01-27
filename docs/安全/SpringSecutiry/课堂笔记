@@ -159,7 +159,10 @@ new SecurityContextLogoutHandler().logout(request, null, null);
 
 ![22-微服务权限方案-权限模块（代码说明）](课堂笔记.assets/22-微服务权限方案-权限模块（代码说明）-1611718933416.png)
 
-##### 认证流程
+##### Security原理--认证流程
 
 ![23-认证流程](课堂笔记.assets/23-认证流程-1611719073437.jpg)
 
+##### Security原理--认证流程源码跟踪
+
+![23-SpringSecurity原理（认证流程）](课堂笔记.assets/23-SpringSecurity原理（认证流程）.png)
