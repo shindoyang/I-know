@@ -158,3 +158,8 @@ new SecurityContextLogoutHandler().logout(request, null, null);
 ##### 权限管理模块前后端
 
 ![22-微服务权限方案-权限模块（代码说明）](课堂笔记.assets/22-微服务权限方案-权限模块（代码说明）-1611718933416.png)
+
+##### 认证流程
+
+![23-认证流程](课堂笔记.assets/23-认证流程-1611719073437.jpg)
+
