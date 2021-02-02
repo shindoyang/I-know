@@ -24,5 +24,5 @@ spring.datasource.data =  classpath:data.sql
 
 做好上面的准备工作即可完成。
 
-![image-20201216091754839](Untitled.assets/image-20201216091754839.png)
+![image-20201216091754839](images/image-20201216091754839.png)
 
