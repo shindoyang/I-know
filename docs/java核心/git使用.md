@@ -82,6 +82,8 @@ git log --author="chenglin" --since=2020-07-01 --until=2020-09-31 --pretty=tform
 
 就可以解决该问题。
 
+选择要分析的dump文件,修改为dump后缀，
+
 --global是该参数的使用范围，如果只想对本版本库设置该参数，只要在上述命令中去掉--global即可。
 
 
