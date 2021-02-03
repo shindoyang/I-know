@@ -56,7 +56,9 @@ java类只能单继承，但是接口可以多实现
 
 
 
+java8学习资料汇总：
 
+https://www.cnblogs.com/liuning8023/p/4501096.html
 
 
 
