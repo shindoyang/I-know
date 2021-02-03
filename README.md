@@ -6,12 +6,15 @@
 
   2. 学习路线：
 
-     javaSE(java8)--> juc--> jvm--> spring--> springmvc--> springboot--> springcloud -->nio--> netty          +   大数据
+     juc--> jvm--> 设计模式--> zookeeper--> redis--> mysql调优-->netty--> spring源码
 
-* 长期目标 -- 分布式领域专家
+* 长期目标 
 
   1. 面向底层学习
-  2. 学习路线：补全目录知识栈
+  
+  2. 学习路线：补全知识栈
+  
+     javaSE(java8)--> juc--> jvm--> spring--> springmvc--> springboot--> springcloud -->nio--> netty          +   大数据
 
 ---
 
