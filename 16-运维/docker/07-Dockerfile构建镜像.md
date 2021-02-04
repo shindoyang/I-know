@@ -1,8 +1,8 @@
-![image-20201223152625024](07-Dockerfile构建镜像.assets/image-20201223152625024.png)
+![image-20201223152625024](images/image-20201223152625024.png)
 
 例子：
 
-![image-20201223152728978](07-Dockerfile构建镜像.assets/image-20201223152728978.png)
+![image-20201223152728978](images/image-20201223152728978.png)
 
 每一行前面的内容都是Dockerfile内置的命令，命令说明如下：
 
@@ -16,10 +16,10 @@ ADD：是将指定文件或目录**复制**到镜像的指定目录下  （和Do
 
 注意：Dockerfile文件是没有扩展名的
 
-![image-20201223154628589](07-Dockerfile构建镜像.assets/image-20201223154628589.png)
+![image-20201223154628589](images/image-20201223154628589.png)
 
 使用docker build 命令创建镜像（以下例子使用相对路径）
 
 docker build -t mashibing.com/webapp:1.0 .
 
-![image-20201223154534277](07-Dockerfile构建镜像.assets/image-20201223154534277.png)
+![image-20201223154534277](images/image-20201223154534277.png)

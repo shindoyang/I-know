@@ -2,13 +2,13 @@
 
 基于go语言开发
 
-![image-20201218102238366](02-初始docker.assets/image-20201218102238366.png)
+![image-20201218102238366](images/image-20201218102238366.png)
 
-![image-20201218102324923](02-初始docker.assets/image-20201218102324923.png)
+![image-20201218102324923](images/image-20201218102324923.png)
 
 标准化应用打包本质上是镜像文件，包含了应用所需要的所有资源依稀外部引用，比如数据库，队列，web应用服务器......，同时还描述运行这些应用要哪些硬件上的要求：硬盘/cpu/内存，部署后还可以灵活调整。
 
-![image-20201218102738103](02-初始docker.assets/image-20201218102738103.png)
+![image-20201218102738103](images/image-20201218102738103.png)
 
 ce：社区版，ee：企业版-收费
 
@@ -18,9 +18,9 @@ windows 必须是win10 64 专业版：这版才有虚拟linux系统
 
 https://docs.docker.com/
 
-![image-20201218103537334](02-初始docker.assets/image-20201218103537334.png)
+![image-20201218103537334](images/image-20201218103537334.png)
 
-![image-20201218103548721](02-初始docker.assets/image-20201218103548721.png)
+![image-20201218103548721](images/image-20201218103548721.png)
 
 下载源是国外的，需增加国内的安装源（ce：社区版）
 
@@ -28,7 +28,7 @@ https://docs.docker.com/
 https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
-![image-20201218103854464](02-初始docker.assets/image-20201218103854464.png)
+![image-20201218103854464](images/image-20201218103854464.png)
 
 ### 1、安装组件包
 
@@ -82,7 +82,7 @@ docker version #查看docker版本号
 
 docker 是cs 架构，使用docker version可以看到响应了Client 和 Server 两方面的信息
 
-![image-20201218110809803](02-初始docker.assets/image-20201218110809803.png)
+![image-20201218110809803](images/image-20201218110809803.png)
 
 下载测试国外的测试镜像
 
@@ -96,7 +96,7 @@ docker pull hello-world
 docker run hello-world
 ```
 
-![image-20201218111141088](02-初始docker.assets/image-20201218111141088.png)
+![image-20201218111141088](images/image-20201218111141088.png)
 
 ### 设置阿里云的加速代理
 
