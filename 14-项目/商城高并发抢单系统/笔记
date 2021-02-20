@@ -57,7 +57,7 @@ Scheduled 需要结合线程池一起使用，避免单一线程处理多个任�
 核心方法：SETNX + EXPIRE  联合使用
 原理：Redis本身就是一个基于内存的、单线程的key-value存储数据库
 
-#### redission 分布式锁
+#### redisson 分布式锁
 > 参考：https://www.cnblogs.com/cjsblog/p/11273205.html
 
 强大一：提供的功能不仅仅包含了redis所提供的，还提供了诸如延迟队列（和RabbitMQ的死信队列类似）、分布式服务、多种分布式对象等！
