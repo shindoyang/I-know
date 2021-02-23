@@ -42,3 +42,9 @@ sudo apt-get  --purge remove smartgit
 
 
 
+# 安装百度云盘
+
+1. wget http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/baidunetdisk_linux_2.0.1.deb
+
+2. sudo dpkg -i baidunetdisk_linux_2.0.1.deb
+
