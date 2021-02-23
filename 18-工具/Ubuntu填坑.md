@@ -32,3 +32,13 @@
 
    再次选定时，请切记选择非商业版即可。
 
+
+
+# 卸载软件
+
+dpkg -L smartgit
+
+sudo apt-get  --purge remove smartgit
+
+
+
