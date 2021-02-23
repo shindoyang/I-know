@@ -48,3 +48,9 @@ sudo apt-get  --purge remove smartgit
 
 2. sudo dpkg -i baidunetdisk_linux_2.0.1.deb
 
+
+
+# MacOS面板
+
+[如何美化让你的 Ubuntu 看起来更像MacOS](https://www.jianshu.com/p/161ec1956847)
+
