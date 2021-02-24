@@ -62,6 +62,12 @@ sudo apt-get  --purge remove smartgit
 
 [如何美化让你的 Ubuntu 看起来更像MacOS](https://www.jianshu.com/p/161ec1956847)
 
+> https://blog.csdn.net/weixin_45819130/article/details/107309056
+>
+> https://www.cnblogs.com/WXGC-yang/p/10423301.html
+
+
+
 2. 常见问题
 
    2.1. 关于在tweaks 优化界面，在设置外观选项时，无法设置gnome shell
@@ -80,5 +86,51 @@ places menu
 
 user theme
 
+# rdesktop 远程桌面访问 
+
+1、安装rdesktop
+
+sudo apt-get install rdesktop
+
+2、远程链接
+
+终端输入命令：
+
+rdesktop -f -a 16 192.168.81.66
 
 
+
+**退出****全屏：****crtl+alt+enter**
+
+
+
+**用法：** **rdesktop[options] server[:port]**   
+
+  命令参数常用的有：
+
+  -u用户名
+
+  -p密码
+
+  -n客户端主机名（显示windows任务管理器中的连接客户端名）
+
+  -g桌面大小（ 宽＊ 高）[也可以用 x(小写的X)]
+
+   -f全屏模式,从全屏模式切换出来按Ctrl+Alt+Enter
+
+  -a连接颜色深度（最高到16位），一般选16才会显示真彩色（window7支持32位）
+
+  -0数字0表示连接上windows控制台，等效mstsc/console命令
+
+
+
+> **参考：****https://blog.csdn.net/u012472945/article/details/79447989**
+
+# ubuntu 17.04 启动easyConnect
+
+```
+# 命令行启动：
+usr/share/sangfor/EasyConnect/EasyConnect
+# 启动失败的补偿命令：
+sudo /bin/bash /usr/share/sangfor/EasyConnect/resources/shell/sslservice.sh
+```
