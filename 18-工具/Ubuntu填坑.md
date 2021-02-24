@@ -52,5 +52,33 @@ sudo apt-get  --purge remove smartgit
 
 # MacOS面板
 
+1. 整体方案
+
+> 方案中要下载的插件已上传百度云盘/软件仓库/ubuntu改macOS工具目录下
+
+[Ubuntu20.04修改MAC风格](https://blog.csdn.net/sxdx2007401103/article/details/108145648)
+
+上面的教程，dock优化一项，不使用plank的方案，而采用下方的 Dash to Dock
+
 [如何美化让你的 Ubuntu 看起来更像MacOS](https://www.jianshu.com/p/161ec1956847)
+
+2. 常见问题
+
+   2.1. 关于在tweaks 优化界面，在设置外观选项时，无法设置gnome shell
+
+![img](images/gnome-shell)
+
+这是因为user-theme没有启用的原因；
+
+解决方法：按照上述步骤安装user theme即可：https://extensions.gnome.org/extension/19/user-themes/
+
+​	2.2.个人推荐安装
+
+dash to dock
+
+places menu
+
+user theme
+
+
 
