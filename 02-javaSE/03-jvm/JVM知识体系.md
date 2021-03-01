@@ -103,5 +103,14 @@ public class Launcher {
 }
 ```
 
+## 3、双亲委派是什么
 
+如果一个类加载器收到了类加载的请求，他首先会从自己缓存里查找是否之前加载过这个class，加载过
+直接返回，没加载过的话他不会自己亲自去加载，他会把这个请求委派给父类加载器去完成，每一层都
+是如此，类似递归，一直递归到顶层父类，也就是Bootstrap ClassLoader ，只要加载完成就会返回
+结果，如果顶层父类加载器无法加载此class，则会返回去交给子类加载器去尝试加载，若最底层的子类
+加载器也没找到，则会抛出ClassNotFoundException 。
 
+源码在java.lang.ClassLoader#loadClass(java.lang.String, boolean)
+
+![image-20210301163136319](images/image-20210301163136319.png)
