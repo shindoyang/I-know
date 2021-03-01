@@ -43,3 +43,65 @@
 
 > 用完了，可以被GC回收了。
 
+
+
+## 2、类加载器种类以及加载范围
+
+![类加载器](images/类加载器.png)
+
+![image-20210301162006177](images/image-20210301162006177.png)
+
+* 启动类加载器（Bootstrap ClassLoader）
+
+> 最顶层类加载器，他的父类加载器是个null，也就是没有父类加载器。负责加载jvm的核心类库，
+> 比如java.lang.* 等，从系统属性中的sun.boot.class.path 所指定的目录中加载类库。他的
+> 具体实现由Java虚拟机底层C++代码实现。
+
+* 扩展类加载器（Extension ClassLoader）
+
+> 父类加载器是Bootstrap ClassLoader。从java.ext.dirs 系统属性所指定的目录中加载类库，
+> 或者从JDK的安装目录的jre/lib/ext 子目录（扩展目录）下加载类库，如果把用户的jar文件放
+> 在这个目录下，也会自动由扩展类加载器加载。继承自java.lang.ClassLoader 。
+
+* 应用程序类加载器（Application ClassLoader）
+
+> 父类加载器是Extension ClassLoader。从环境变量classpath或者系统属性java.class.path 所
+> 指定的目录中加载类。继承自java.lang.ClassLoader 。
+
+* 自定义类加载器（User ClassLoader）
+
+> 除了上面三个自带的以外，用户还能制定自己的类加载器，但是所有自定义的类加载器都应该继承
+> 自java.lang.ClassLoader 。比如热部署、tomcat都会用到自定义类加载器。
+
+* 补充：不同ClassLoader加载的文件路径配置在如下源码里写的：
+
+```java
+// sun.misc.Launcher
+public class Launcher {
+    // Bootstrap类加载器的加载路径，在static静态代码块里用的
+    private static String bootClassPath =
+    System.getProperty("sun.boot.class.path");
+    
+    
+    // AppClassLoader 继承 ClassLoader
+    static class AppClassLoader extends URLClassLoader {
+        public static ClassLoader getAppClassLoader(final ClassLoader var0)
+            throws IOException {
+            // java.class.path
+            final String var1 = System.getProperty("java.class.path");
+        }
+    }
+        
+    // ExtClassLoader 继承 ClassLoader
+    static class ExtClassLoader extends URLClassLoader {
+        public static Launcher.ExtClassLoader getExtClassLoader() throws
+            IOException {
+            // java.ext.dirs
+            String var0 = System.getProperty("java.ext.dirs");
+        }
+    }
+}
+```
+
+
+
