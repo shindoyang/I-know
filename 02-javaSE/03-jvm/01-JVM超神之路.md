@@ -114,3 +114,36 @@ public class Launcher {
 源码在java.lang.ClassLoader#loadClass(java.lang.String, boolean)
 
 ![image-20210301163136319](images/image-20210301163136319.png)
+
+
+
+
+
+
+
+查看java默认的垃圾回收器版本：
+
+java -xx:+PrintCommandLineFlags
+
+```shell
+C:\Users\yanggeng>java -XX:+PrintCommandLineFlags
+-XX:G1ConcRefinementThreads=4 -XX:GCDrainStackTargetSize=64 -XX:InitialHeapSize=266535360 -XX:MaxHeapSize=426456
+che -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseG1GC -XX:-UseLargePagesIndividualAllocation
+```
+
+```shell
+# java -XX:+PrintCommandLineFlags
+Picked up JAVA_TOOL_OPTIONS: -Dapollo.configService=http://dev-apollo-service-apollo-configservice.apollo:8080 -Denv=dev
+-XX:InitialHeapSize=1052635456 -XX:MaxHeapSize=16842167296 -XX:+PrintCommandLineFlags -XX:+UseCompressedClassPointers -XX:+UseCompressedOops
+```
+
+
+
+> https://blog.csdn.net/u013074999/article/details/90550307
+>
+> https://blog.51cto.com/11408933/2066857
+
+
+
+## 11、常用工具的使用
+
