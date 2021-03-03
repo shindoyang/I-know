@@ -331,7 +331,7 @@ feign在方法上可以设置：@RequestMapping,@ResponseBody。
 
    > 《feign继承》
 
-    ![feign继承](F:/msb大学/网约车/online-taxi-file-master/二期/feign/feign继承.png)
+    ![feign继承](images/feign继承.png)
    
    ```sh
    common组件：
@@ -514,6 +514,8 @@ ServiceForecast#forecast出现 20次（请求7,返回13）
 ## 14.9 原理
 
 > 《Feign流程图》
+
+ ![feign流程图](images/feign流程图.png)
 
 1. 主程序入口添加@EnableFeignClients注解开启对Feign Client扫描加载处理。根据Feign Client的开发规范，定义接口并加@FeignClient注解。
 2. 当程序启动时，会进行包扫描，扫描所有@FeignClient注解的类，并将这些信息注入Spring IoC容器中。当定义的Feign接口中的方法被调用时，通过JDK的代理方式，来生成具体的RequestTemplate。当生成代理时，Feign会为每个接口方法创建一个RequestTemplate对象，该对象封装了HTTP请求需要的全部信息，如请求参数名、请求方法等信息都在这个过程中确定。
