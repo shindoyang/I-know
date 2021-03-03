@@ -331,6 +331,8 @@ feign在方法上可以设置：@RequestMapping,@ResponseBody。
 
    > 《feign继承》
 
+    ![feign继承](F:/msb大学/网约车/online-taxi-file-master/二期/feign/feign继承.png)
+   
    ```sh
    common组件：
    package com.online.taxi.common.interactor;
@@ -367,11 +369,11 @@ feign在方法上可以设置：@RequestMapping,@ResponseBody。
    @FeignClient(name = "service-valuation")
    public interface ServiceForecast extends CommonServiceForecast {
    
-   }
+}
    ```
 
    
-
+   
    个人不喜欢这么做，也有的企业这么用，不喜欢是因为这样服务端和客户端就耦合了，这么用，会方便编码。自己权衡取舍。没有对错。
 
 ## 14.6 Feign压缩

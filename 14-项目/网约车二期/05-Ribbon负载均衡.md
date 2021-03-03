@@ -591,7 +591,7 @@ IRule负载均衡策略：通过实现该接口定义自己的负载均衡策略
 
 默认实现：
 
-ZoneAvoidanceRule（区域权衡策略）：复合判断Server所在区域的性能和Server的可用性，轮询选择服务器。
+**ZoneAvoidanceRule（区域权衡策略-默认策略）**：复合判断Server所在区域的性能和Server的可用性，轮询选择服务器。
 
 其他规则：
 
