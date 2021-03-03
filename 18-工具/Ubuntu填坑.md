@@ -134,3 +134,15 @@ usr/share/sangfor/EasyConnect/EasyConnect
 # 启动失败的补偿命令：
 sudo /bin/bash /usr/share/sangfor/EasyConnect/resources/shell/sslservice.sh
 ```
+
+
+
+## 强制解锁
+
+ubuntu下安装出现错误：另一个进程已经为dpkg frontend 加锁
+
+直接删除文件，使用强制解锁办法
+
+1.sudo rm /var/cache/apt/archives/lock
+
+2.sudo rm /var/lib/dpkg/lock
