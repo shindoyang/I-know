@@ -147,3 +147,9 @@ Picked up JAVA_TOOL_OPTIONS: -Dapollo.configService=http://dev-apollo-service-ap
 
 ## 11、常用工具的使用
 
+jps
+
+jmap
+
+jstat
+
