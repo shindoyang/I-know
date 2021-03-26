@@ -1,0 +1,1 @@
+![23-tcc](images/23-tcc.png)
