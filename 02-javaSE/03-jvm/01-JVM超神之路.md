@@ -164,3 +164,7 @@ jstat
 GC日志详解
 
 ![GC日志详解](images/GC日志详解.png)
+
+GCHeapDump
+
+![GCHeapDump](images/GCHeapDump.png)
