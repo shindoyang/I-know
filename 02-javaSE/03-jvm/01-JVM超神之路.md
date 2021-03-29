@@ -153,3 +153,18 @@ jmap
 
 jstat
 
+
+
+对象分配过程
+
+![对象分配过程详解](images/对象分配过程详解.png)
+
+
+
+GC日志详解
+
+![GC日志详解](images/GC日志详解.png)
+
+GCHeapDump
+
+![GCHeapDump](images/GCHeapDump.png)
