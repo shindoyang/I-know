@@ -53,9 +53,9 @@ Map接口和Collection接口是所有集合框架的父接口：
 
 ## List，Set，Map三者的区别？List、Set、Map 是否继 承自 Collection 接口？List、Map、Set 三个接口存取 元素时，各有什么特点？
 
-![Collection](02-Java集合容器面试题（2020最新版）-重点.assets/Collection.png)
+![Collection](images/collection/Collection.png)
 
-![Map](02-Java集合容器面试题（2020最新版）-重点.assets/Map.png)
+![Map](images/collection/Map.png)
 
 Java 容器分为 Collection 和 Map 两大类，Collection集合的子接口有Set、 List、Queue三种子接口。我们比较常用的是Set、List，Map接口不是 collection的子接口。 
 
@@ -456,13 +456,13 @@ HashMap 基于 Hash 算法实现的
 
 JDK1.8之前采用的是拉链法。拉链法：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
 
-![jdk1.7中HashMap数据结构](02-Java集合容器面试题（2020最新版）-重点.assets/image-20201109162525820.png)
+![jdk1.7中HashMap数据结构](images/collection/image-20201109162525820.png)
 
 #### JDK1.8之后
 
 相比于之前的版本，jdk1.8在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间。
 
-![jdk1.8中HashMap数据结构](02-Java集合容器面试题（2020最新版）-重点.assets/clip_image001.jpg)
+![jdk1.8中HashMap数据结构](images/collection/clip_image001.jpg)
 
 #### JDK1.7 VS JDK1.8 比较
 
@@ -495,7 +495,7 @@ JDK8中用了复杂度 O（logn）的树结构来提升碰撞下的性能。
 
 putVal方法执行流程图
 
-![image-20201109162901394](02-Java集合容器面试题（2020最新版）-重点.assets/image-20201109162901394.png)
+![image-20201109162901394](images/collection/image-20201109162901394.png)
 
 ```
 1 public V put(K key, V value) {
@@ -732,7 +732,7 @@ Hash，一般翻译为“散列”，也有直接音译为“哈希”的，这�
 
 在Java中，保存数据有两种比较简单的数据结构：数组和链表。数组的特点是：寻址容易，插入和删除困难；链表的特点是：寻址困难，但插入和删除容易；所以我们将数组和链表结合在一起，发挥两者各自的优势，使用一种叫做链地址法的方式可以解决哈希冲突：
 
-![image-20201109163448750](02-Java集合容器面试题（2020最新版）-重点.assets/image-20201109163448750.png)
+![image-20201109163448750](images/collection/image-20201109163448750.png)
 
 这样我们就可以将拥有相同哈希值的对象(img)组织成一个链表放在hash值所对应的 bucket下，但相比于hashCode返回的int类型，我们HashMap初始的容量大小DEFAULT_INITIAL_CAPACITY = 1 << 4（即2的四次方16）要远小于int类型的范围，所以我们如果只是单纯的用hashCode取余来获取对应的bucket这将会大大增加哈希碰撞的概率，并且最坏情况下还会将HashMap变成一个单链表，所以我们还需要对hashCode作一定的优化 hash()函数
 
@@ -749,7 +749,7 @@ Hash，一般翻译为“散列”，也有直接音译为“哈希”的，这�
 
 #### JDK1.8新增红黑树
 
-![image-20201109163526813](02-Java集合容器面试题（2020最新版）-重点.assets/image-20201109163526813.png)
+![image-20201109163526813](images/collection/image-20201109163526813.png)
 
 通过上面的链地址法（使用散列表）和扰(img)动函数我们成功让我们的数据分布更平均，哈希碰撞减少，但是当我们的HashMap中存在大量数据时，加入我们某个 bucket下对应的链表有n个元素，那么遍历时间复杂度就为O(n)，为了针对这个问题，JDK1.8在HashMap中新增了红黑树的数据结构，进一步使得遍历复杂度降低至O(logn)；总结
 
@@ -875,15 +875,15 @@ Hashtable(同一把锁) :使用 synchronized 来保证线程安全，效率非�
 
 HashTable:
 
-![image-20201109165808848](02-Java集合容器面试题（2020最新版）-重点.assets/image-20201109165808848.png)
+![image-20201109165808848](images/collection/image-20201109165808848.png)
 
 JDK1.7的ConcurrentHashMap：
 
-![image-20201109165820466](02-Java集合容器面试题（2020最新版）-重点.assets/image-20201109165820466.png)
+![image-20201109165820466](images/collection/image-20201109165820466.png)
 
 JDK1.8的ConcurrentHashMap（TreeBi(img)n: 红黑二叉树节点 Node: 链表节点）：
 
-![image-20201109165840129](02-Java集合容器面试题（2020最新版）-重点.assets/image-20201109165840129.png)
+![image-20201109165840129](images/collection/image-20201109165840129.png)
 
 答：ConcurrentHashMap 结合了 Hash(img)Map 和 HashTable 二者的优势。 HashMap 没有考虑同步，HashTable 考虑了同步的问题。但是 HashTable 在每次同步执行时都要锁住整个结构。 ConcurrentHashMap 锁的方式是稍微细粒度的。
 
@@ -899,7 +899,7 @@ JDK1.7
 
 一个 ConcurrentHashMap 里包含一个 Segment 数组。Segment 的结构和 HashMap类似，是一种数组和链表结构，一个 Segment 包含一个 HashEntry 数组，每个 HashEntry 是一个链表结构的元素，每个 Segment 守护着一个 HashEntry数组里的元素，当对 HashEntry 数组的数据进行修改时，必须首先获得对应的 Segment的锁。
 
-![image-20201109165916185](02-Java集合容器面试题（2020最新版）-重点.assets/image-20201109165916185.png)
+![image-20201109165916185](images/collection/image-20201109165916185.png)
 
 1. 该类包含两个静态内部类 HashE(img)ntry 和 Segment ；前者用来封装映射表的键值对，后者用来充当锁的角色；
 
@@ -911,7 +911,7 @@ JDK1.8
 
 结构如下：
 
-![image-20201109165939912](02-Java集合容器面试题（2020最新版）-重点.assets/image-20201109165939912.png)
+![image-20201109165939912](images/collection/image-20201109165939912.png)
 
 看插入元素过程（建议去看看源码）：
 
