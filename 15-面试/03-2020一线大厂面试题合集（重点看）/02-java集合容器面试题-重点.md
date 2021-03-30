@@ -82,7 +82,10 @@ Collection
 
 - HashSet（无序，唯一）：基于 HashMap 实现的，底层采用 HashMap 来保存元素
 - LinkedHashSet： LinkedHashSet 继承与 HashSet，并且其内部是通过  LinkedHashMap 来实现的。有点类似于我们之前说的LinkedHashMap 其内部是基 于 Hashmap 实现一样，不过还是有一点点区别的。 
-- TreeSet（有序，唯一）： 红黑树(自平衡的排序二叉树。) Map 
+- TreeSet（有序，唯一）： 红黑树(自平衡的排序二叉树。) 
+
+**Map** 
+
 - HashMap： JDK1.8之前HashMap由数组+链表组成的，数组是HashMap的主 体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）.JDK1.8以后
   在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转 化为红黑树，以减少搜索时间 
 - LinkedHashMap：LinkedHashMap 继承自 HashMap，所以它的底层仍然是 基于拉链式散列结构即由数组和链表或红黑树组成。另外，LinkedHashMap 在上面 结构的基础上，增加了一条双向链表，使得上面的结构可以保持键值对的插入顺序。 同时通过对链表进行相应的操作，实现了访问顺序相关逻辑。 
@@ -106,7 +109,7 @@ Collection
 
 解决办法： 
 
-1. 在遍历过程中，所有涉及到改变modCount值得地方全部加上 synchronized。 
+1. 在遍历过程中，所有涉及到改变modCount值的地方全部加上 synchronized。 
 2. 使用CopyOnWriteArrayList来替换ArrayList
 
 ## 怎么确保一个集合不能被修改？ 
@@ -142,9 +145,7 @@ Iterator 使用代码如下：
 6	}
 ```
 
-Iterator 的特点是只能单向遍历，但是更加安全，因为它可以确保，在当前遍历
-
-的集合元素被更改的时候，就会抛出 ConcurrentModificationException 异常。
+Iterator 的特点是只能单向遍历，但是更加安全，因为它可以确保，在当前遍历的集合元素被更改的时候，就会抛出 ConcurrentModificationException 异常。
 
 ### 如何边遍历边移除 Collection 中的元素？
 
@@ -177,7 +178,7 @@ Iterator 的特点是只能单向遍历，但是更加安全，因为它可以�
 
 ### 遍历方式有以下几种：
 
-1. for 循环遍历，基于计数器。在集合外部维护一个计数器，然后依次读 取每一个位置的元素，当读取到后一个元素后停止。 
+1. for 循环遍历，基于计数器。在集合外部维护一个计数器，然后依次读 取每一个位置的元素，当读取到最后一个元素后停止。 
 
 2. 迭代器遍历，Iterator。Iterator 是面向对象的一个设计模式，目的是屏 蔽不同数据集合的特点，统一遍历集合的接口。Java 在 Collections 中支 持了 Iterator 模式。 
 
@@ -238,9 +239,7 @@ List 转数组：使用 List 自带的 toArray() 方法。代码示例：
 
 这两个类都实现了 List 接口（List 接口继承了 Collection 接口），他们都是有序集合
 
-          线程安全：Vector 使用了 Synchronized 来实现线程同步，是线程安全的，而 
-
-ArrayList 是非线程安全的。
+线程安全：Vector 使用了 Synchronized 来实现线程同步，是线程安全的，而 ArrayList 是非线程安全的。
 
 性能：ArrayList 在性能方面要优于 Vector。
 
@@ -248,11 +247,9 @@ ArrayList 是非线程安全的。
 
 Vector 扩容每次会增加 1 倍，而 ArrayList 只会增加 50%。
 
-Vector类的所有方法都是同步的。可以由两个线程安全地访问一个Vector对
+Vector类的所有方法都是同步的。可以由两个线程安全地访问一个Vector对象、但是一个线程访问Vector的话代码要在同步操作上耗费大量的时间。
 
-象、但是一个线程访问Vector的话代码要在同步操作上耗费大量的时间。
-
-Arraylist不是同步的，所以在不需要保证线程安全时时建议使用Arraylist。
+Arraylist不是同步的，所以在不需要保证线程安全时建议使用Arraylist。
 
 ### 插入数据时，ArrayList、LinkedList、Vector谁速度较快？阐述 ArrayList、Vector、LinkedList 的存储性能和特性？
 
@@ -266,9 +263,7 @@ LinkedList 使用双向链表实现存储，按序号索引数据需要进行前
 
 ### 多线程场景下如何使用 ArrayList？
 
-ArrayList 不是线程安全的，如果遇到多线程场景，可以通过 Collections 的 
-
-synchronizedList 方法将其转换成线程安全的容器后再使用。例如像下面这样：
+ArrayList 不是线程安全的，如果遇到多线程场景，可以通过 Collections 的 synchronizedList 方法将其转换成线程安全的容器后再使用。例如像下面这样：
 
 ```
 1	List<String> synchronizedList = Collections.synchronizedList(list);
@@ -289,16 +284,13 @@ synchronizedList 方法将其转换成线程安全的容器后再使用。例如
 再看一下 ArrayList 的定义：
 
 ```
-1	public class ArrayList<E> extends AbstractList<E>
-2	implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+1	public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAccess, Cloneable, java.io.Serializable
 ```
 
-可以看到 ArrayList 实现了 Serializable 接口，这意味着 ArrayList 支持序列
-
-化。transient 的作用是说不希望 elementData 数组被序列化，重写了 writeObject 实现：
+可以看到 ArrayList 实现了 Serializable 接口，这意味着 ArrayList 支持序列化。transient 的作用是说不希望 elementData 数组被序列化，重写了 writeObject 实现：
 
 ```
-1 private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOE xception{ 
+1 private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException{ 
 2  *// Write out element count, and any hidden stuff* 
 3  int expectedModCount = modCount; 
 4  s.defaultWriteObject(); 

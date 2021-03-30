@@ -8,7 +8,7 @@
 
 数据量很大的excel或者csv，用poi/easypoi都有弊病，会把数据加载到内存里
 
-可以实时阿里的easyexcel，但听说easyexcel也是基于poi，而且easyexcel不支持数据原始类型。
+可以试试阿里的easyexcel，但听说easyexcel也是基于poi，而且easyexcel不支持数据原始类型。
 
 其实用poi的event模型就可以了。
 
