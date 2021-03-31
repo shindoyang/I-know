@@ -378,30 +378,24 @@ hashCode（）与equals（）的相关规定：
 ==与equals的区别
 
 1. ==是判断两个变量或实例是不是指向同一个内存空间 equals是判断两个变量或实例所指向的内存空间的值是不是相同
-
-2. ==是指对内存地址进行比较 equals()是对字符串的内容进行比较3.== 指引用是否相同 equals()指的是值是否相同
+2. ==是指对内存地址进行比较 equals()是对字符串的内容进行比较
+3. == 指引用是否相同 equals()指的是值是否相同
 
 #### HashSet与HashMap的区别
-
-|      |      |
-| ---- | ---- |
-|      |      |
 
 | HashMap                                                    | HashSet                                                      |
 | ---------------------------------------------------------- | ------------------------------------------------------------ |
 | 实现了Map接口                                              | 实现了Set接口                                                |
 | 存储键值对                                                 | 仅存储对象                                                   |
 | 调用  put（）向  map中添加元素                             | 调用  add（）  方法向Set  中添加元素                         |
-| HashMap  使用键  （Key）计算  Hashcode                     | HashSet 使用成员对象来计  算  hashcode 值，对于两个对象  来说  hashcode 可能相  同，所以  equals()方法用来判断对象的相等性，如果两个对象不同的话，那  么返回  false |
+| HashMap  使用键  （Key）计算  Hashcode                     | HashSet 使用成员对象来计  算  hashcode 值，对于两个对象  来说  hashcode 可能相同，所以equals()方法用来判断对象的相等性，如果两个对象不同的话，那么返回false |
 | HashMap 相对于  HashSet 较快，因为它是使用唯一的键获取对象 | HashSet 较  HashMap  来说比较慢                              |
 
 ## Queue
 
 #### BlockingQueue是什么？
 
-Java.util.concurrent.BlockingQueue是一个队列，在进行检索或移除一个元素的时候，它会等待队列变为非空；当在添加一个元素时，它会等待队列中的可用空间。BlockingQueue接口是Java集合框架的一部分，主要用于实现生产者-消费者模式。我们不需要担心等待生产者有可用的空间，或消费者有可用的对象，因为它都在BlockingQueue的实现类中被处理了。Java提供了集中 BlockingQueue的实现，比如ArrayBlockingQueue、
-
-LinkedBlockingQueue、PriorityBlockingQueue,、SynchronousQueue等。在 Queue 中 poll()和 remove()有什么区别？
+Java.util.concurrent.BlockingQueue是一个队列，在进行检索或移除一个元素的时候，它会等待队列变为非空；当在添加一个元素时，它会等待队列中的可用空间。BlockingQueue接口是Java集合框架的一部分，主要用于实现生产者-消费者模式。我们不需要担心等待生产者有可用的空间，或消费者有可用的对象，因为它都在BlockingQueue的实现类中被处理了。Java提供了集中 BlockingQueue的实现，比如ArrayBlockingQueue、LinkedBlockingQueue、PriorityBlockingQueue,、SynchronousQueue等。在 Queue 中 poll()和 remove()有什么区别？
 
 - 相同点：都是返回第一个元素，并在队列中删除返回的对象。
 - 不同点：如果没有元素 poll()会返回 null，而 remove()会直接抛出 NoSuchElementException 异常。
@@ -428,17 +422,13 @@ HashMap 基于 Hash 算法实现的
 
 1. 当我们往Hashmap中put元素时，利用key的hashCode重新hash计算出当前对象的元素在数组中的下标
 
-2. 存储时，如果出现hash值相同的key，此时有两种情况。(1)如果key相
-
-同，则覆盖原始值；(2)如果key不同（出现冲突），则将当前的key-value 放入链表中
+2. 存储时，如果出现hash值相同的key，此时有两种情况。(1)如果key相同，则覆盖原始值；(2)如果key不同（出现冲突），则将当前的key-value 放入链表中
 
 3. 获取时，直接找到hash值对应的下标，在进一步判断key是否相同，从而找到对应值。
 
 4. 理解了以上过程就不难明白HashMap是如何解决hash冲突的问题，核心就是使用了数组的存储方式，然后将冲突的key的对象放入链表中，一旦发现冲突就在链表中做进一步的对比。
 
-需要注意Jdk 1.8中对HashMap的实现做了优化，当链表中的节点数据超过八个
-
-之后，该链表会转为红黑树来提高查询效率，从原来的O(n)到O(logn)
+需要注意Jdk 1.8中对HashMap的实现做了优化，当链表中的节点数据超过八个之后，该链表会转为红黑树来提高查询效率，从原来的O(n)到O(logn)
 
 ### HashMap在JDK1.7和JDK1.8中有哪些不同？ HashMap的底层实现
 
@@ -448,13 +438,13 @@ HashMap 基于 Hash 算法实现的
 
 JDK1.8之前采用的是拉链法。拉链法：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
 
-![jdk1.7中HashMap数据结构](images/collection/image-20201109162525820.png)
+![jdk1.7中HashMap数据结构](images/collection/image-20201109162918571.png)
 
 #### JDK1.8之后
 
 相比于之前的版本，jdk1.8在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间。
 
-![jdk1.8中HashMap数据结构](images/collection/clip_image001.jpg)
+![jdk1.8中HashMap数据结构](images/collection/clip_image001.png)
 
 #### JDK1.7 VS JDK1.8 比较
 
@@ -472,7 +462,7 @@ JDK1.8主要解决或优化了一下问题：
 | 初始化方式                 | 单独函数：  inflateTab  le()                                 | 直接集成到了扩容  函数  resize()中                           |
 | hash值计算方式             | 扰动处理   = 9次扰动   = 4次位运算 + 5次异或运算             | 扰动处理   = 2次扰动   = 1次位运算 + 1次异或运算             |
 | 存放数据 的规则            | 无冲突 时，存放 数组；冲 突时，存 放链表                     | 无冲突时，存放 数组；冲 突 & 链表 长度 < 8：存放单 链表；冲 突 & 链表 长度 > 8：树化并 存放红黑 树 |
-| 插入数据 方式              | 头插法 （先讲原 位置的数 据移到后1 位，再插 入数据到 该位置） | 尾插法 （直接插 入到链表 尾部/红黑 树）                      |
+| 插入数据 方式              | 头插法 （先将原 位置的数 据移到后1 位，再插 入数据到 该位置） | 尾插法 （直接插 入到链表 尾部/红黑 树）                      |
 | 扩容后存 储位置的 计算方式 | 全部按照 原来方法 进行计算 （即 hashCode ->> 扰动 函数 ->> (h&lengt h-1)） | 按照扩容 后的规律 计算（即 扩容后的 位置=原位 置 or 原位 置 + 旧容 量） |
 
 ### HashMap的put方法的具体流程？
@@ -763,7 +753,7 @@ Hash，一般翻译为“散列”，也有直接音译为“哈希”的，这�
 
 答：String、Integer等包装类的特性能够保证Hash值的不可更改性和计算准确性，能够有效的减少Hash碰撞的几率
 
-\1.   都是final类型，即不可变性，保证key的不可更改性，不会存在获取 hash值不同的情况
+1. 都是final类型，即不可变性，保证key的不可更改性，不会存在获取 hash值不同的情况
 
 内部已重写了equals()、hashCode()等方法，遵守了HashMap内部的规范（不清楚可以去上面看看putValue的过程），不容易出现Hash值计算错误的情况
 
@@ -829,9 +819,7 @@ NullPointerException。
 
 ### 如何决定使用 HashMap 还是TreeMap？
 
-对于在Map中插入、删除和定位元素这类操作，HashMap是 好的选择。然
-
-而，假如你需要对一个有序的key集合进行遍历，TreeMap是更好的选择。基于你的collection的大小，也许向HashMap中添加元素会更快，将map换为TreeMap进行有序key的遍历
+对于在Map中插入、删除和定位元素这类操作，HashMap是 好的选择。然而，假如你需要对一个有序的key集合进行遍历，TreeMap是更好的选择。基于你的collection的大小，也许向HashMap中添加元素会更快，将map换为TreeMap进行有序key的遍历
 
 ### HashMap 和 ConcurrentHashMap 的区别
 
@@ -843,25 +831,13 @@ NullPointerException。
 
 ConcurrentHashMap 和 Hashtable 的区别主要体现在实现线程安全的方式上不同。
 
- 底层数据结构： JDK1.7的 ConcurrentHashMap 底层采用 分段的数组
-
-+链表 实现，JDK1.8 采用的数据结构跟HashMap1.8的结构一样，数组+链表/红黑
+ 底层数据结构： JDK1.7的 ConcurrentHashMap 底层采用 分段的数组+链表 实现，JDK1.8 采用的数据结构跟HashMap1.8的结构一样，数组+链表/红黑
 
 二叉树。Hashtable 和 JDK1.8 之前的 HashMap 的底层数据结构类似都是采用 数组+链表 的形式，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的；
 
-           实现线程安全的方式（重要）： ① 在JDK1.7的时候，
+实现线程安全的方式（重要）： ① 在JDK1.7的时候，ConcurrentHashMap（分段锁） 对整个桶数组进行了分割分段(Segment)，每一把锁只锁容器其中一部分数据，多线程访问容器里不同数据段的数据，就不会存在锁竞争，提高并发访问率。（默认分配16个Segment，比Hashtable效率提高16
 
-ConcurrentHashMap（分段锁） 对整个桶数组进行了分割分段(Segment)，每一把锁只锁容器其中一部分数据，多线程访问容器里不同数据段的数据，就不会存在锁竞争，提高并发访问率。（默认分配16个Segment，比Hashtable效率提高16
-
-倍。） 到了 JDK1.8 的时候已经摒弃了Segment的概念，而是直接用 
-
-Node 数组+链表+红黑树的数据结构来实现，并发控制使用 
-
-synchronized 和 CAS 来操作。（JDK1.6以后 对 synchronized锁做了很多优化） 整个看起来就像是优化过且线程安全的 HashMap，虽然在JDK1.8中还
-
-能看到 Segment 的数据结构，但是已经简化了属性，只是为了兼容旧版本；② 
-
-Hashtable(同一把锁) :使用 synchronized 来保证线程安全，效率非常低下。当一个线程访问同步方法时，其他线程也访问同步方法，可能会进入阻塞或轮询状态，如使用 put 添加元素，另一个线程不能使用 put 添加元素，也不能使用 get，竞争会越来越激烈效率越低。
+倍。） 到了 JDK1.8 的时候已经摒弃了Segment的概念，而是直接用 Node 数组+链表+红黑树的数据结构来实现，并发控制使用 synchronized 和 CAS 来操作。（JDK1.6以后 对 synchronized锁做了很多优化） 整个看起来就像是优化过且线程安全的 HashMap，虽然在JDK1.8中还能看到 Segment 的数据结构，但是已经简化了属性，只是为了兼容旧版本；② Hashtable(同一把锁) :使用 synchronized 来保证线程安全，效率非常低下。当一个线程访问同步方法时，其他线程也访问同步方法，可能会进入阻塞或轮询状态，如使用 put 添加元素，另一个线程不能使用 put 添加元素，也不能使用 get，竞争会越来越激烈效率越低。
 
 两者的对比图：
 
@@ -885,9 +861,7 @@ JDK1.7
 
 首先将数据分为一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时，其他段的数据也能被其他线程访问。
 
-在JDK1.7中，ConcurrentHashMap采用Segment + HashEntry的方式进行实
-
-现，结构如下：
+在JDK1.7中，ConcurrentHashMap采用Segment + HashEntry的方式进行实现，结构如下：
 
 一个 ConcurrentHashMap 里包含一个 Segment 数组。Segment 的结构和 HashMap类似，是一种数组和链表结构，一个 Segment 包含一个 HashEntry 数组，每个 HashEntry 是一个链表结构的元素，每个 Segment 守护着一个 HashEntry数组里的元素，当对 HashEntry 数组的数据进行修改时，必须首先获得对应的 Segment的锁。
 
@@ -916,9 +890,7 @@ JDK1.8
 4	}
 ```
 
-如果相应位置的Node不为空，且当前该节点不处于移动状态，则对该节点加
-
-synchronized锁，如果该节点的hash不小于0，则遍历链表更新节点或插入新节点；
+如果相应位置的Node不为空，且当前该节点不处于移动状态，则对该节点加synchronized锁，如果该节点的hash不小于0，则遍历链表更新节点或插入新节点；
 
 ```
 1 if (fh >= 0) { 
