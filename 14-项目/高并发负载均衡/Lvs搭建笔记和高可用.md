@@ -113,6 +113,8 @@ node01,node04:
 						delay_before_retry 3
 					}
 				}
+				
+			#scp 远程复制	
 			scp  ./keepalived.conf  root@node04:`pwd`
 
 ```
