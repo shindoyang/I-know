@@ -48,10 +48,15 @@ keepalived实验：
 主机： node01~node04
 
 node01:
-	ipvsadm -C
-	ifconfig eth0:8 down
+	ipvsadm -C  清楚之前的负载策略配置
+	ifconfig eth0:8 down  把上一步手动配的虚拟网卡停掉。这些后面都通过keepalived实现。
+
+以上步骤是为了吧node01还原成裸机。
 
 ---
+
+keepalived配置：
+
 
 ```yml
 node01,node04:
@@ -81,7 +86,7 @@ node01,node04:
 				lb_algo rr
 				lb_kind DR
 				nat_mask 255.255.255.0
-				persistence_timeout 0
+				persistence_timeout 0  #生产环境的时候要改一个合适的时间，实验环境暂时不缓存
 				protocol TCP
 
 				real_server 192.168.150.12 80 {
