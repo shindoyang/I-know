@@ -66,6 +66,8 @@ spring:
       namespace: "{spring}:{session}"
 ```
 
+> 报错内容：ERR 'RENAME' command keys must in same slot
+>
 > 参考：https://github.com/spring-projects/spring-session/issues/1646
 
 3、client端改用redis存储
