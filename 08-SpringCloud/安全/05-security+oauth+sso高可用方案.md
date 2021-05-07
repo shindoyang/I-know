@@ -50,6 +50,24 @@ At least one redirect_uri must be registered with the client
 
 
 
+参数配置化：
+
+```yml
+spring:
+ oauth2:
+    client:
+      validity_seconds:
+        access_token: 2592000 # 60 * 60 * 24 * 30 = 30天
+        refresh_token: 2592000 # 30天
+      refresh_token:
+        reuse: false
+  session: # 解决redis cluster集群模式下 rename命令的报错
+    redis:
+      namespace: "{spring}:{session}"
+```
+
+> 参考：https://github.com/spring-projects/spring-session/issues/1646
+
 3、client端改用redis存储
 
 
