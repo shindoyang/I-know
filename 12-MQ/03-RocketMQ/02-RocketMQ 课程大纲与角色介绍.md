@@ -148,7 +148,7 @@ AB应用不在互相依赖
 
 底层由netty实现，提供了路由管理、服务注册、服务发现的功能，是一个无状态节点
 
-**nameserver是服务发现者**，集群中各个角色（producer、broker、consumer等）都需要定时想nameserver上报自己的状态，以便互相发现彼此，超时不上报的话，nameserver会把它从列表中剔除
+**nameserver是服务发现者**，集群中各个角色（producer、broker、consumer等）都需要定时向nameserver上报自己的状态，以便互相发现彼此，超时不上报的话，nameserver会把它从列表中剔除
 
 **nameserver可以部署多个**，当多个nameserver存在的时候，其他角色同时向他们上报信息，以保证高可用，
 

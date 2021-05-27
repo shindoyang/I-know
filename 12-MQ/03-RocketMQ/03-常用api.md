@@ -11,8 +11,8 @@
 消息模式默认为集群消费模式
 
 ```
- consumer.setMessageModel(MessageModel.BROADCASTING);
- consumer.setMessageModel(MessageModel.CLUSTERING);
+ consumer.setMessageModel(MessageModel.BROADCASTING);  //广播模式
+ consumer.setMessageModel(MessageModel.CLUSTERING);    //集群模式
 ```
 
 #### 集群消息
@@ -225,6 +225,16 @@ message.setDelayTimeLevel(1);
 #### producer
 
 **默认超时时间**
+
+```json
+消费者和生产者的重试还是有区别的，主要有两点
+
+1、默认重试次数：Product默认是2次，而Consumer默认是16次。
+
+2、重试时间间隔：Product是立刻重试，而Consumer是有一定时间间隔的。它照1S,5S,10S,30S,1M,2M····2H进行重试。
+
+3、Product在异步情况重试失效，而对于Consumer在广播情况下重试失效。
+```
 
 ```
     /**
