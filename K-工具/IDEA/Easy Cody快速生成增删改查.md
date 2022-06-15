@@ -14,19 +14,23 @@
 
  ![image-20220614164342242](.\images\image-20220614164342242.png)
 
+ ![image-20220614171713523](.\images\image-20220614171713523.png)
+
 鼠标移动至Data Source选择你使用的数据库
 
  ![image-20220614164408784](.\images\image-20220614164408784.png)
 
 填好数据库用户名和密码，URL必须和你idea使用的一样，否则会报错
 
- ![image-20220614164440854](.\images\image-20220614164440854.png)
+ ![image-20220614171621277](.\images\image-20220614171621277.png)
 
-创建成功右击选中表格选择EasyCode–》Generate Code
+选择自己所需的表，鼠标右键->EasyCode->Generate Code。
 
 注意，下图的package也要指定，不然生成的类的第一行package 不准确
 
- ![image-20220614164514296](.\images\image-20220614164514296.png)
+ ![image-20220614171525552](.\images\image-20220614171525552.png)
 
 勾选成功点击ok快速生成各层代码(**增删改查**)
+
+![image-20220614171546884](.\images\image-20220614171546884.png)
 
