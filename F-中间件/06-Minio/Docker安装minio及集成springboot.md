@@ -144,7 +144,7 @@ docker run -p 9000:9000 -p 9090:9090      --net=host      --name minio      -d -
 
 ![img](.\images\fbb290153ad440c685a0b71c7beb73d2.png)
 
-maven依赖
+#### maven依赖
 
 ```xml
 <!-- #低版本的okhttp会报错提示 -->
@@ -169,7 +169,7 @@ maven依赖
 
 ![img](.\images\b1c21dff2b0544f6b0f5dfd820cfe324.png)
 
-测试文件上传 
+#### 测试文件上传 
 
 ```java
 import io.minio.BucketExistsArgs;
@@ -221,7 +221,7 @@ public class FileUploader {
 
 ![img](.\images\3e55cf31a46d4c4aab03ebdb0ddc542d.png)
 
-文件上传成功展示
+#### 文件上传成功展示
 
 ![img](.\images\6e5a403aad544764a442ac0da3a94cb4.png)
 
@@ -229,11 +229,11 @@ public class FileUploader {
 
 ### 7、Springboot整合Minio
 
-##### maven依赖
+#### maven依赖
 
 见6、sdk操作
 
-##### application.yml 配置信息
+#### application.yml 配置信息
 
 ```yaml
 minio:
@@ -243,7 +243,7 @@ minio:
   secretKey: 2fMzxPtElqon #访问的秘钥
 ```
 
-##### MinioConfig.class配置类
+#### MinioConfig.class配置类
 
 ```java
 package com.gdqxj.config;
@@ -274,7 +274,7 @@ public class MinioConfig {
 }
 ```
 
-##### minio工具类
+#### minio工具类
 
 ```java
 package com.gdqxj.utils;
@@ -492,7 +492,7 @@ public class MinioUtil {
 }
 ```
 
-##### 文件处理接口
+#### 文件处理接口
 
 ```java
 package com.gdqxj.controller;
@@ -592,7 +592,7 @@ public class FileController {
 }
 ```
 
-##### 接口测试
+#### 接口测试
 
 上传：
 
